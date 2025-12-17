@@ -3,42 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Kashaf ❤️</title>
+<title>For My Love ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
-<style> .love-btn {
-  background: white;
-  color: #ff4d6d;
-  border: none;
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.heart-float {
-  position: fixed;
-  bottom: 0;
-  font-size: 24px;
-  animation: floatUp 4s linear forwards;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
-}
+<style>
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 .section {
   padding: 60px 20px;
@@ -70,10 +44,34 @@ footer {
   font-size: 14px;
   opacity: 0.8;
 }
+
+/* Floating Hearts Styles */
+#floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+.floating-heart {
+  position: absolute;
+  top: 100%;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
+
+<!-- Floating Hearts Container -->
+<div id="floating-hearts"></div>
 
 <div class="section">
   <h1>To My Beautiful Girl 💕</h1>
@@ -108,26 +106,23 @@ footer {
 <footer>
   Made with ❤️ just for you
 </footer>
-<div class="section">
-  <button onclick="createHearts()" class="love-btn">
-    Show Love 💖
-  </button>
-</div><script>
-function createHearts() {
-  for (let i = 0; i < 20; i++) {
-    let heart = document.createElement("div");
-    heart.innerHTML = "❤️";
-    heart.className = "heart-float";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
-    document.body.appendChild(heart);
 
-    setTimeout(() => heart.remove(), 4000);
-  }
+<!-- Floating Hearts Script -->
+<script>
+const colors = ["#ff5e6c", "#ff94a0", "#ff7eb3", "#ff758c"];
+const numHearts = 20;
+
+for (let i = 0; i < numHearts; i++) {
+  const heart = document.createElement("div");
+  heart.classList.add("floating-heart");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+  heart.style.fontSize = 10 + Math.random() * 30 + "px";
+  heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+  heart.innerText = "❤️";
+  document.getElementById("floating-hearts").appendChild(heart);
 }
 </script>
+
 </body>
 </html>
-<div class="section">
-  <button onclick="createHearts()" class="love-btn">Show Love 💖</button>
-</div>

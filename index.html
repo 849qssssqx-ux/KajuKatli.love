@@ -45,7 +45,7 @@ footer {
   opacity: 0.8;
 }
 
-/* Floating Hearts Styles */
+/* Floating Hearts */
 #floating-hearts {
   position: fixed;
   top: 0;
@@ -65,12 +65,49 @@ footer {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
 }
+
+/* Quotes / Lines */
+#quote-box {
+  margin: 50px auto;
+  max-width: 600px;
+  font-size: 22px;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+/* Slideshow */
+.slideshow-container {
+  max-width: 600px;
+  position: relative;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.slide {
+  display: none;
+  width: 100%;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  user-select: none;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
 </style>
 </head>
-
 <body>
 
-<!-- Floating Hearts Container -->
+<!-- Floating Hearts -->
 <div id="floating-hearts"></div>
 
 <div class="section">
@@ -89,12 +126,21 @@ footer {
   </div>
 </div>
 
+<!-- Quotes Section -->
+<div class="section">
+  <h2>Sweet Quotes 💌</h2>
+  <div id="quote-box">I love you to the moon and back.</div>
+</div>
+
+<!-- Slideshow Section -->
 <div class="section">
   <h2>Our Memories 📸</h2>
-  <div class="gallery">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
+  <div class="slideshow-container">
+    <img class="slide" src="photo1.jpg">
+    <img class="slide" src="photo2.jpg">
+    <img class="slide" src="photo3.jpg">
+    <span class="prev">&#10094;</span>
+    <span class="next">&#10095;</span>
   </div>
 </div>
 
@@ -107,11 +153,11 @@ footer {
   Made with ❤️ just for you
 </footer>
 
-<!-- Floating Hearts Script -->
+<!-- Scripts -->
 <script>
+// Floating Hearts
 const colors = ["#ff5e6c", "#ff94a0", "#ff7eb3", "#ff758c"];
 const numHearts = 20;
-
 for (let i = 0; i < numHearts; i++) {
   const heart = document.createElement("div");
   heart.classList.add("floating-heart");
@@ -122,6 +168,40 @@ for (let i = 0; i < numHearts; i++) {
   heart.innerText = "❤️";
   document.getElementById("floating-hearts").appendChild(heart);
 }
+
+// Quotes Rotation
+const quotes = [
+  "I love you to the moon and back.",
+  "You are my sunshine on a rainy day.",
+  "Every moment with you is magic.",
+  "Forever and always, you are mine."
+];
+let quoteIndex = 0;
+const quoteBox = document.getElementById("quote-box");
+function showQuote() {
+  quoteBox.style.opacity = 0;
+  setTimeout(() => {
+    quoteBox.innerText = quotes[quoteIndex];
+    quoteBox.style.opacity = 1;
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+  }, 500);
+}
+setInterval(showQuote, 4000);
+showQuote();
+
+// Slideshow
+let slideIndex = 0;
+const slides = document.getElementsByClassName("slide");
+function showSlide(n) {
+  for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+  slides[n].style.display = "block";
+}
+function nextSlide() { slideIndex = (slideIndex+1) % slides.length; showSlide(slideIndex); }
+function prevSlide() { slideIndex = (slideIndex-1+slides.length) % slides.length; showSlide(slideIndex); }
+document.querySelector(".next").onclick = nextSlide;
+document.querySelector(".prev").onclick = prevSlide;
+showSlide(slideIndex);
+setInterval(nextSlide, 5000); // Auto slide
 </script>
 
 </body>

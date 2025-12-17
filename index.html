@@ -5,7 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Kashaf ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
-<style>
+<style> .love-btn {
+  background: white;
+  color: #ff4d6d;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.heart-float {
+  position: fixed;
+  bottom: 0;
+  font-size: 24px;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -81,9 +108,26 @@ footer {
 <footer>
   Made with ❤️ just for you
 </footer>
+<div class="section">
+  <button onclick="createHearts()" class="love-btn">
+    Show Love 💖
+  </button>
+</div><script>
+function createHearts() {
+  for (let i = 0; i < 20; i++) {
+    let heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.className = "heart-float";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
 
+    setTimeout(() => heart.remove(), 4000);
+  }
+}
+</script>
 </body>
 </html>
 <div class="section">
-  <button onclick="createHearts()" class="love-btn">Show Love ❤️</button>
+  <button onclick="createHearts()" class="love-btn">Show Love 💖</button>
 </div>

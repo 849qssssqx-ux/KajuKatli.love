@@ -14,8 +14,6 @@ body{
   overflow-x:hidden;
   overflow-y:auto;
 }
-
-/* glow effect */
 body::before{
   content:"";
   position:fixed; inset:0;
@@ -26,7 +24,6 @@ body::before{
 }
 @keyframes glow{0%,100%{opacity:.6}50%{opacity:1}}
 
-/* gate entering ritual */
 #gate{
   position:fixed; inset:0;
   background:linear-gradient(135deg,#ffb3ec,#c77dff);
@@ -55,7 +52,6 @@ body::before{
 @keyframes fadeIn{0%{opacity:0;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
 @keyframes buttonPop{0%{transform:scale(0)}100%{transform:scale(1)}}
 
-/* sections */
 header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px}
 header h1{font-family:Playfair Display,serif;font-size:72px}
 header p{font-size:26px;max-width:900px;margin-top:30px}
@@ -68,13 +64,11 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
 .text h2{font-family:Playfair Display,serif;font-size:48px;margin-bottom:30px}
 .text p{font-size:22px;line-height:1.7}
 
-/* slider */
 .slider{display:flex;height:100vh;width:100vw;transition:transform 2s cubic-bezier(.77,0,.18,1)}
 .slide{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px}
 .slide h1{font-family:Playfair Display,serif;font-size:68px;max-width:900px;opacity:0;animation:rise 3s ease forwards}
 @keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
 
-/* fairy emojis */
 .fairy{
   position:fixed;
   pointer-events:none;
@@ -89,24 +83,16 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   100% { transform:translateY(-50vh) rotate(360deg); opacity:0; }
 }
 
-/* cursor trail */
 .trail{position:fixed;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.8);pointer-events:none;animation:fade 1s linear forwards}
 @keyframes fade{to{opacity:0;transform:scale(2)}}
 
-/* midnight */
 #midnight{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;text-align:center}
 #midnight h3{font-family:Playfair Display,serif;font-size:54px;max-width:900px}
 
-/* mobile */
 @media(max-width:900px){section{flex-direction:column!important;text-align:center}section img{width:90%}}
 </style>
 </head>
 <body>
-
-<!-- EMBEDDED MUSIC -->
-<audio id="music" loop autoplay>
-  <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAw..." type="audio/mp3">
-</audio>
 
 <!-- Enter Gate Ritual -->
 <div id="gate">
@@ -121,7 +107,6 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   </div>
 </header>
 
-<!-- IMAGE SECTIONS -->
 <section>
   <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
   <div class="text">
@@ -146,7 +131,6 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   </div>
 </section>
 
-<!-- SLIDER -->
 <div class="slider" id="slider">
   <div class="slide"><h1>Kashaf you are always safe with me</h1></div>
   <div class="slide"><h1>You are deeply loved and cherished Kashaf</h1></div>
@@ -156,25 +140,20 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   <div class="slide"><h1>I am right here forever Kashaf</h1></div>
 </div>
 
-<!-- MIDNIGHT -->
 <div id="midnight">
   <h3>It is midnight and I am thinking of you Kashaf</h3>
 </div>
 
 <script>
-/* ENTER RITUAL */
 function enter(){
   const gate=document.getElementById("gate");
   gate.style.transition="all 2s ease";
   gate.style.transform="scale(0)";
   gate.style.opacity="0";
   setTimeout(()=>gate.style.display="none",2000);
-  const m=document.getElementById("music");
-  if(m) m.play().catch(()=>{});
-  speakQuote(); // read first quote
+  speakQuote();
 }
 
-/* SLIDER AUTO */
 let index=0;
 const slider=document.getElementById("slider");
 const slides=slider.getElementsByClassName("slide");
@@ -184,7 +163,6 @@ setInterval(()=>{
   speakQuote();
 },6000);
 
-/* FAIRY EMOJIS */
 const fairyIcons=["✨","💖","🌸","💫","🧚"];
 function createFairy(){
   const f=document.createElement("div");
@@ -196,12 +174,9 @@ function createFairy(){
   document.body.appendChild(f);
   setTimeout(()=>f.remove(),(8+Math.random()*8)*1000);
 }
-// spawn initial fairies
 for(let i=0;i<50;i++){setTimeout(createFairy,i*200)}
-// continue spawning
 setInterval(createFairy,800);
 
-/* CURSOR TRAIL */
 document.addEventListener("mousemove",e=>{
   const t=document.createElement("div");
   t.className="trail";
@@ -211,7 +186,6 @@ document.addEventListener("mousemove",e=>{
   setTimeout(()=>t.remove(),1000);
 });
 
-/* MIDNIGHT */
 setInterval(()=>{
   const d=new Date();
   if(d.getHours()===0 && d.getMinutes()===0){
@@ -220,11 +194,11 @@ setInterval(()=>{
   }
 },1000);
 
-/* AI VOICE */
 let voices=[];
 function loadVoices(){voices=speechSynthesis.getVoices();}
 speechSynthesis.onvoiceschanged=loadVoices;
 loadVoices();
+
 function speakText(text){
   try{
     speechSynthesis.cancel();
@@ -234,15 +208,15 @@ function speakText(text){
     speechSynthesis.speak(u);
   }catch(e){console.log(e);}
 }
+
 function speakQuote(){
   if(slides[index]) speakText(slides[index].innerText);
 }
 
-/* MUSIC CLICK UNLOCK */
-document.addEventListener("click",()=>{
-  const m=document.getElementById("music");
-  if(m) m.play().catch(()=>{});
+document.body.addEventListener("click",()=>{
+  speakQuote();
 },{once:true});
 </script>
+
 </body>
 </html>

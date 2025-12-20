@@ -280,7 +280,10 @@ document.addEventListener("click",()=>{
     speak("You found my deepest truth, Kashaf. I love you endlessly.");
   }
 });
+<script>
+document.addEventListener("click",()=>{
+  speechSynthesis.cancel();
+},{once:true});
 </script>
-
 </body>
 </html>

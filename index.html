@@ -12,8 +12,9 @@ body{
   background:linear-gradient(180deg,#ffd6ff,#e7c6ff,#c77dff,#9d4edd);
   color:white;
   overflow-x:hidden;
+  overflow-y:auto;
 }
-/* soft glow */
+/* glow */
 body::before{
   content:"";
   position:fixed; inset:0;
@@ -23,13 +24,41 @@ body::before{
   animation:glow 12s ease-in-out infinite;
 }
 @keyframes glow{0%,100%{opacity:.6}50%{opacity:1}}
+
 /* gate */
-#gate{position:fixed;inset:0;background:linear-gradient(135deg,#ffb3ec,#c77dff);display:flex;align-items:center;justify-content:center;z-index:9999}
-#gate button{padding:26px 60px;font-size:22px;border:none;border-radius:60px;background:white;color:#9d4edd;cursor:pointer;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+#gate{
+  position:fixed; inset:0;
+  background:linear-gradient(135deg,#ffb3ec,#c77dff);
+  display:flex; align-items:center; justify-content:center; z-index:9999;
+  flex-direction:column; overflow:hidden;
+}
+#gate h1{
+  font-family:Playfair Display,serif;
+  font-size:60px;
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+#gate button{
+  margin-top:40px;
+  padding:26px 60px;
+  font-size:22px;
+  border:none;
+  border-radius:60px;
+  background:white;
+  color:#9d4edd;
+  cursor:pointer;
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+  transform:scale(0);
+  animation:buttonPop 2s forwards 1s;
+}
+@keyframes fadeIn{0%{opacity:0;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
+@keyframes buttonPop{0%{transform:scale(0)}100%{transform:scale(1)}}
+
 /* sections */
 header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px}
 header h1{font-family:Playfair Display,serif;font-size:72px}
 header p{font-size:26px;max-width:900px;margin-top:30px}
+
 section{padding:120px 10%;display:flex;align-items:center;gap:80px}
 section:nth-child(even){flex-direction:row-reverse}
 section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4);animation:float 6s ease-in-out infinite}
@@ -37,30 +66,40 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
 .text{max-width:700px}
 .text h2{font-family:Playfair Display,serif;font-size:48px;margin-bottom:30px}
 .text p{font-size:22px;line-height:1.7}
+
 /* slider */
 .slider{display:flex;height:100vh;width:100vw;transition:transform 2s cubic-bezier(.77,0,.18,1)}
 .slide{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px}
 .slide h1{font-family:Playfair Display,serif;font-size:68px;max-width:900px;opacity:0;animation:rise 3s ease forwards}
 @keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
-/* fairy particles */
-.fairy{position:fixed;animation:riseParticles linear infinite;pointer-events:none}
-@keyframes riseParticles{from{transform:translateY(120vh);opacity:0}to{transform:translateY(-140vh);opacity:1}}
+
+/* fairy emojis */
+.fairy{position:fixed;animation:riseParticles linear infinite;pointer-events:none;font-size:22px}
+@keyframes riseParticles{from{transform:translateY(120vh);opacity:0)}to{transform:translateY(-140vh);opacity:1}}
+
 /* cursor trail */
 .trail{position:fixed;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.8);pointer-events:none;animation:fade 1s linear forwards}
 @keyframes fade{to{opacity:0;transform:scale(2)}}
+
 /* midnight */
 #midnight{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;text-align:center}
 #midnight h3{font-family:Playfair Display,serif;font-size:54px;max-width:900px}
+
 /* mobile */
 @media(max-width:900px){section{flex-direction:column!important;text-align:center}section img{width:90%}}
 </style>
 </head>
 <body>
 
-<audio id="music" src="music.mp3" loop></audio>
+<!-- EMBEDDED MUSIC (BASE64 MP3 SAMPLE, replace with your own if desired) -->
+<audio id="music" loop autoplay>
+  <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAw..." type="audio/mp3">
+</audio>
 
+<!-- Enter Gate Ritual -->
 <div id="gate">
-  <button onclick="enter()">Enter Kashaf World</button>
+  <h1>Welcome to Kashaf's World</h1>
+  <button onclick="enter()">Enter the Magical World</button>
 </div>
 
 <header>
@@ -70,7 +109,7 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   </div>
 </header>
 
-<!-- IMAGE SECTIONS WITH QUOTES -->
+<!-- IMAGE SECTIONS -->
 <section>
   <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
   <div class="text">
@@ -111,9 +150,13 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
 </div>
 
 <script>
-/* ENTER */
+/* ENTER RITUAL */
 function enter(){
-  document.getElementById("gate").style.display="none";
+  const gate=document.getElementById("gate");
+  gate.style.transition="all 2s ease";
+  gate.style.transform="scale(0)";
+  gate.style.opacity="0";
+  setTimeout(()=>gate.style.display="none",2000);
   const m=document.getElementById("music");
   if(m) m.play().catch(()=>{});
   speakQuote(); // read first quote
@@ -129,14 +172,14 @@ setInterval(()=>{
   speakQuote();
 },6000);
 
-/* FAIRY PARTICLES */
+/* FAIRY EMOJIS */
 const icons=["✨","💖","🌸","💫","🧚"];
-for(let i=0;i<50;i++){
+for(let i=0;i<60;i++){
   const f=document.createElement("div");
   f.className="fairy";
   f.textContent=icons[Math.floor(Math.random()*icons.length)];
   f.style.left=Math.random()*100+"vw";
-  f.style.fontSize=18+Math.random()*26+"px";
+  f.style.fontSize=18+Math.random()*28+"px";
   f.style.animationDuration=10+Math.random()*12+"s";
   document.body.appendChild(f);
 }
@@ -160,20 +203,11 @@ setInterval(()=>{
   }
 },1000);
 
-/* MUSIC UNLOCK */
-document.addEventListener("click",()=>{
-  const m=document.getElementById("music");
-  if(m) m.play().catch(()=>{});
-},{once:true});
-
-/* VOICE READING */
+/* AI VOICE */
 let voices=[];
-function loadVoices(){
-  voices=speechSynthesis.getVoices();
-}
+function loadVoices(){voices=speechSynthesis.getVoices();}
 speechSynthesis.onvoiceschanged=loadVoices;
 loadVoices();
-
 function speakText(text){
   try{
     speechSynthesis.cancel();
@@ -183,13 +217,15 @@ function speakText(text){
     speechSynthesis.speak(u);
   }catch(e){console.log(e);}
 }
-
 function speakQuote(){
-  if(slides[index]){
-    speakText(slides[index].innerText);
-  }
+  if(slides[index]) speakText(slides[index].innerText);
 }
-</script>
 
+/* MUSIC UNLOCK ON CLICK */
+document.addEventListener("click",()=>{
+  const m=document.getElementById("music");
+  if(m) m.play().catch(()=>{});
+},{once:true});
+</script>
 </body>
 </html>

@@ -3,78 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <title>Kashaf</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
+
 body{
-  margin:0;
-  font-family:'Montserrat',sans-serif;
-  background:radial-gradient(circle at top,#ff8fb1,#ff5f87);
+  height:100vh;
+  overflow:hidden;
+  font-family:Montserrat,sans-serif;
+  background:radial-gradient(circle at top,#ffd6ff,#e7c6ff,#c77dff,#9d4edd);
   color:white;
-  overflow-x:hidden;
 }
-#gate{
-  position:fixed;inset:0;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:99999;
-}
-#holdBtn{
-  width:200px;height:200px;
-  border-radius:50%;
-  border:none;
-  font-size:18px;
-  color:white;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  position:relative;
-}
-#progress{
-  position:absolute;
-  bottom:0;left:0;
-  height:6px;
-  background:white;
-  width:0%;
-}
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-.glass{
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(25px);
-  border-radius:30px;
-  padding:60px 40px;
-  max-width:800px;
-}
-h1{
-  font-family:'Playfair Display',serif;
-  font-size:56px;
-}
-#type{
-  font-size:24px;
-  font-style:italic;
-  min-height:50px;
-}
-.whisper{
+
+/* cosmic glow */
+body::before{
+  content:"";
   position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:14px;
-  opacity:.8;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.3),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.2),transparent 40%);
+  animation:glow 12s ease-in-out infinite;
+  pointer-events:none;
 }
-section{
-  padding:120px 20px;
+@keyframes glow{
+  0%,100%{opacity:.7}
+  50%{opacity:1}
+}
+
+/* music gate */
+#gate{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#ffb3ec,#c77dff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+#gate button{
+  padding:26px 60px;
+  font-size:22px;
+  border:none;
+  border-radius:60px;
+  background:white;
+  color:#9d4edd;
+  cursor:pointer;
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+}
+
+/* slider */
+.slider{
+  display:flex;
+  height:100vh;
+  width:100vw;
+  transition:transform 2s cubic-bezier(.77,0,.18,1);
+}
+.slide{
+  min-width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px;
+}
+.slide h1{
+  font-family:Playfair Display,serif;
+  font-size:68px;
+  max-width:900px;
+  opacity:0;
+  animation:rise 3s ease forwards;
+}
+@keyframes rise{
+  from{opacity:0;transform:translateY(60px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* fairy particles */
+.fairy{
+  position:absolute;
+  animation:float linear infinite;
+  pointer-events:none;
+}
+@keyframes float{
+  from{transform:translateY(120vh) scale(.5);opacity:0}
+  to{transform:translateY(-140vh) scale(1.2);opacity:1}
+}
+
+/* cursor trail */
+.trail{
+  position:fixed;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,.8);
+  pointer-events:none;
+  animation:fade 1s linear forwards;
+}
+@keyframes fade{
+  to{opacity:0;transform:scale(2)}
+}
+
+/* midnight message */
+#midnight{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:9998;
   text-align:center;
 }
+#midnight h2{
+  font-family:Playfair Display,serif;
+  font-size:52px;
+  max-width:900px;
+}
+
+/* subtle breathing */
+@keyframes breathe{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.08)}
+}
+.slider{animation:breathe 10s ease-in-out infinite}
 </style>
 </head>
 
@@ -83,139 +139,75 @@ section{
 <audio id="music" src="music.mp3" loop></audio>
 
 <div id="gate">
-  <button id="holdBtn">
-    Hold & Enter
-    <div id="progress"></div>
-  </button>
+  <button onclick="enter()">Enter Kashaf World</button>
 </div>
 
-<div class="hero">
-  <div class="glass">
-    <h1>Kashaf</h1>
-    <p>You are not part of my life.</p>
-    <p><b>You are my life.</b></p>
-    <div id="type"></div>
-  </div>
+<div class="slider" id="slider">
+  <div class="slide"><h1>Kashaf you are always safe with me</h1></div>
+  <div class="slide"><h1>You are deeply loved and cherished Kashaf</h1></div>
+  <div class="slide"><h1>I choose you in every lifetime Kashaf</h1></div>
+  <div class="slide"><h1>You never have to worry or doubt Kashaf</h1></div>
+  <div class="slide"><h1>This love is gentle warm and eternal Kashaf</h1></div>
+  <div class="slide"><h1I am right here forever Kashaf</h1></div>
 </div>
 
-<section id="section1">
-  <h2>Every universe leads to you</h2>
-</section>
-
-<section id="section2">
-  <h2>Forever means Kashaf</h2>
-</section>
-
-<div class="whisper" id="whisper"></div>
+<div id="midnight">
+  <h2>It is midnight and I am thinking of you Kashaf</h2>
+</div>
 
 <script>
-/* ================= VOICE ENGINE ================= */
-let voices=[];
-function loadVoices(){
-  voices=speechSynthesis.getVoices();
-}
-speechSynthesis.onvoiceschanged=loadVoices;
-loadVoices();
-
-function speak(text){
-  try{
-    speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text);
-    u.voice=voices.find(v=>v.lang.startsWith("en")&&v.name.toLowerCase().includes("female"))||voices[0];
-    u.rate=0.85;
-    u.pitch=1.1;
-    u.volume=1;
-    speechSynthesis.speak(u);
-    showWhisper(text);
-  }catch(e){
-    showWhisper(text);
-  }
-}
-
-/* BACKUP TEXT WHISPER */
-function showWhisper(text){
-  const w=document.getElementById("whisper");
-  w.textContent=text;
-  w.style.opacity=1;
-  setTimeout(()=>w.style.opacity=0,4000);
-}
-
-/* ================= HOLD TO ENTER ================= */
-let hold=0,interval;
-const btn=document.getElementById("holdBtn");
-const prog=document.getElementById("progress");
-
-function startHold(){
-  if(navigator.vibrate) navigator.vibrate(50);
-  interval=setInterval(()=>{
-    hold+=2;
-    prog.style.width=hold+"%";
-    if(hold>=100){
-      clearInterval(interval);
-      enterSite();
-    }
-  },30);
-}
-function stopHold(){
-  clearInterval(interval);
-  hold=0;
-  prog.style.width="0%";
-}
-
-btn.addEventListener("mousedown",startHold);
-btn.addEventListener("touchstart",startHold);
-document.addEventListener("mouseup",stopHold);
-document.addEventListener("touchend",stopHold);
-
-/* ================= ENTER ================= */
-function enterSite(){
+/* enter */
+function enter(){
   document.getElementById("gate").style.display="none";
   const m=document.getElementById("music");
   if(m) m.play().catch(()=>{});
-  speak("Kashaf… I was waiting for you.");
 }
 
-/* FAILSAFE */
-setTimeout(()=>{
-  const g=document.getElementById("gate");
-  if(g) g.style.display="none";
-},3500);
+/* auto slides */
+let i=0;
+const slider=document.getElementById("slider");
+setInterval(()=>{
+  i=(i+1)%6;
+  slider.style.transform=`translateX(-${i*100}vw)`;
+},6500);
 
-/* ================= TYPEWRITER ================= */
-const lines=[
-  "Kashaf, you are the soul of my soul.",
-  "Every heartbeat chooses you.",
-  "I would find you in every universe."
-];
-let l=0,c=0;
-const t=document.getElementById("type");
-(function type(){
-  if(c<lines[l].length){
-    t.textContent+=lines[l][c++];
-    setTimeout(type,60);
-  }else{
-    setTimeout(()=>{
-      t.textContent="";
-      c=0;
-      l=(l+1)%lines.length;
-      type();
-    },2500);
-  }
-})();
+/* fairy system */
+const icons=["✨","💖","🧚","🌸","💫","💜"];
+for(let j=0;j<60;j++){
+  const f=document.createElement("div");
+  f.className="fairy";
+  f.textContent=icons[Math.floor(Math.random()*icons.length)];
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=10+Math.random()*12+"s";
+  f.style.fontSize=18+Math.random()*28+"px";
+  document.body.appendChild(f);
+}
 
-/* ================= VOICE ON SCROLL ================= */
-let spoken=false;
-window.addEventListener("scroll",()=>{
-  if(window.scrollY>300 && !spoken){
-    spoken=true;
-    speak("No matter how far you go, I am with you, Kashaf.");
-  }
+/* cursor magic */
+document.addEventListener("mousemove",e=>{
+  const t=document.createElement("div");
+  t.className="trail";
+  t.style.left=e.clientX+"px";
+  t.style.top=e.clientY+"px";
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),1000);
 });
 
-/* MIDNIGHT MESSAGE */
-if(new Date().getHours()===0){
-  setTimeout(()=>speak("It is midnight, Kashaf. I was thinking of you."),3000);
+/* midnight timer */
+function checkMidnight(){
+  const now=new Date();
+  if(now.getHours()===0 && now.getMinutes()===0){
+    document.getElementById("midnight").style.display="flex";
+  }
 }
+setInterval(checkMidnight,1000);
+
+/* parallax tilt */
+document.addEventListener("mousemove",e=>{
+  const x=(e.clientX/window.innerWidth-0.5)*20;
+  const y=(e.clientY/window.innerHeight-0.5)*20;
+  slider.style.transform+=` rotateX(${y/4}deg) rotateY(${x/4}deg)`;
+});
 </script>
 
 </body>

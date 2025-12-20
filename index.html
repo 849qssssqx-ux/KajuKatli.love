@@ -5,131 +5,75 @@
 <title>Kashaf</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --beat:1.3s;
-}
-
-*{box-sizing:border-box;}
-
-html,body{
+*{box-sizing:border-box}
+body{
   margin:0;
   font-family:'Montserrat',sans-serif;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255,180,200,0.5), transparent 60%),
-    radial-gradient(circle at 70% 80%, rgba(255,120,160,0.5), transparent 60%),
-    #ff6f91;
+  background:radial-gradient(circle at top,#ff8fb1,#ff5f87);
   color:white;
   overflow-x:hidden;
 }
-
-/* ENTRY GATE */
 #gate{
-  position:fixed;
-  inset:0;
+  position:fixed;inset:0;
   background:black;
   display:flex;
   align-items:center;
   justify-content:center;
   z-index:99999;
 }
-#gate button{
-  padding:22px 46px;
-  font-size:22px;
-  border-radius:60px;
+#holdBtn{
+  width:200px;height:200px;
+  border-radius:50%;
   border:none;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  font-size:18px;
   color:white;
-  cursor:pointer;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  position:relative;
 }
-
-/* FLOATING ENERGY */
-#particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-}
-.particle{
+#progress{
   position:absolute;
-  animation:float linear infinite;
+  bottom:0;left:0;
+  height:6px;
+  background:white;
+  width:0%;
 }
-@keyframes float{
-  from{transform:translateY(0);opacity:1}
-  to{transform:translateY(-130vh);opacity:0}
-}
-
-/* HERO */
 .hero{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  position:relative;
-  z-index:2;
 }
 .glass{
-  background:rgba(255,255,255,0.12);
+  background:rgba(255,255,255,.15);
   backdrop-filter:blur(25px);
-  border-radius:40px;
-  padding:80px 50px;
-  max-width:860px;
-  box-shadow:0 60px 120px rgba(0,0,0,0.45);
-  transition:transform .1s;
-}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:60px;
-}
-
-/* CORE */
-#core{display:block;margin:30px auto}
-
-/* TYPE */
-#type{
-  font-size:26px;
-  min-height:60px;
-  font-style:italic;
-}
-
-/* TIMELINE */
-.timeline{
-  padding:140px 20px;
-  max-width:1000px;
-  margin:auto;
-}
-.memory{
-  display:flex;
-  align-items:center;
-  gap:50px;
-  margin-bottom:100px;
-}
-.memory:nth-child(even){flex-direction:row-reverse;}
-.memory img{
-  width:320px;
   border-radius:30px;
-  box-shadow:0 40px 80px rgba(0,0,0,0.5);
+  padding:60px 40px;
+  max-width:800px;
 }
-.memory p{
+h1{
   font-family:'Playfair Display',serif;
+  font-size:56px;
+}
+#type{
   font-size:24px;
+  font-style:italic;
+  min-height:50px;
 }
-
-/* FINAL */
-.final{
-  padding:160px 20px;
+.whisper{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:14px;
+  opacity:.8;
+}
+section{
+  padding:120px 20px;
   text-align:center;
-}
-.final h2{
-  font-family:'Playfair Display',serif;
-  font-size:48px;
-}
-
-@media(max-width:768px){
-  .memory{flex-direction:column!important;text-align:center}
 }
 </style>
 </head>
@@ -139,92 +83,108 @@ html,body{
 <audio id="music" src="music.mp3" loop></audio>
 
 <div id="gate">
-  <button onclick="enter()">Hold & Enter</button>
+  <button id="holdBtn">
+    Hold & Enter
+    <div id="progress"></div>
+  </button>
 </div>
 
-<div id="particles"></div>
-
-<section class="hero">
+<div class="hero">
   <div class="glass">
     <h1>Kashaf</h1>
-    <canvas id="core" width="220" height="220"></canvas>
-
     <p>You are not part of my life.</p>
     <p><b>You are my life.</b></p>
-
     <div id="type"></div>
   </div>
+</div>
+
+<section id="section1">
+  <h2>Every universe leads to you</h2>
 </section>
 
-<section class="timeline">
-  <div class="memory">
-    <img src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
-    <p>The moment I learned your name.</p>
-  </div>
-  <div class="memory">
-    <img src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
-    <p>Everything changed, Kashaf.</p>
-  </div>
-  <div class="memory">
-    <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
-    <p>This is what forever feels like.</p>
-  </div>
+<section id="section2">
+  <h2>Forever means Kashaf</h2>
 </section>
 
-<section class="final">
-  <h2 id="vow">Forever Means Kashaf</h2>
-  <p>
-    Across every universe,<br>
-    every lifetime,<br><br>
-    <b>I choose you, Kashaf.</b>
-  </p>
-</section>
+<div class="whisper" id="whisper"></div>
 
 <script>
-/* STORE NAME PERMANENTLY */
-localStorage.kashafName="Kashaf";
-
-/* AI VOICE */
-function speak(text,soft=true){
-  const u=new SpeechSynthesisUtterance(text);
-  const v=speechSynthesis.getVoices();
-  u.voice=v.find(x=>x.lang.includes("en")&&x.name.toLowerCase().includes("female"))||v[0];
-  u.rate=soft?0.85:1;
-  u.pitch=soft?1.1:1;
-  u.volume=0.75;
-  speechSynthesis.speak(u);
+/* ================= VOICE ENGINE ================= */
+let voices=[];
+function loadVoices(){
+  voices=speechSynthesis.getVoices();
 }
+speechSynthesis.onvoiceschanged=loadVoices;
+loadVoices();
 
-/* ENTRY */
-function enter(){
-  document.getElementById("gate").remove();
-  document.getElementById("music").play();
-  if(!localStorage.aiWelcome){
-    setTimeout(()=>speak("Kashaf... I was waiting for you."),1800);
-    localStorage.aiWelcome=true;
+function speak(text){
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.voice=voices.find(v=>v.lang.startsWith("en")&&v.name.toLowerCase().includes("female"))||voices[0];
+    u.rate=0.85;
+    u.pitch=1.1;
+    u.volume=1;
+    speechSynthesis.speak(u);
+    showWhisper(text);
+  }catch(e){
+    showWhisper(text);
   }
 }
 
-/* PARTICLES */
-const box=document.getElementById("particles");
-["❤️","✨","💖","💫"].forEach((e,i)=>{
-  for(let j=0;j<15;j++){
-    let p=document.createElement("div");
-    p.className="particle";
-    p.innerText=e;
-    p.style.left=Math.random()*100+"vw";
-    p.style.bottom="-50px";
-    p.style.fontSize=14+Math.random()*30+"px";
-    p.style.animationDuration=6+Math.random()*6+"s";
-    box.appendChild(p);
-  }
-});
+/* BACKUP TEXT WHISPER */
+function showWhisper(text){
+  const w=document.getElementById("whisper");
+  w.textContent=text;
+  w.style.opacity=1;
+  setTimeout(()=>w.style.opacity=0,4000);
+}
 
-/* TYPE */
+/* ================= HOLD TO ENTER ================= */
+let hold=0,interval;
+const btn=document.getElementById("holdBtn");
+const prog=document.getElementById("progress");
+
+function startHold(){
+  if(navigator.vibrate) navigator.vibrate(50);
+  interval=setInterval(()=>{
+    hold+=2;
+    prog.style.width=hold+"%";
+    if(hold>=100){
+      clearInterval(interval);
+      enterSite();
+    }
+  },30);
+}
+function stopHold(){
+  clearInterval(interval);
+  hold=0;
+  prog.style.width="0%";
+}
+
+btn.addEventListener("mousedown",startHold);
+btn.addEventListener("touchstart",startHold);
+document.addEventListener("mouseup",stopHold);
+document.addEventListener("touchend",stopHold);
+
+/* ================= ENTER ================= */
+function enterSite(){
+  document.getElementById("gate").style.display="none";
+  const m=document.getElementById("music");
+  if(m) m.play().catch(()=>{});
+  speak("Kashaf… I was waiting for you.");
+}
+
+/* FAILSAFE */
+setTimeout(()=>{
+  const g=document.getElementById("gate");
+  if(g) g.style.display="none";
+},3500);
+
+/* ================= TYPEWRITER ================= */
 const lines=[
   "Kashaf, you are the soul of my soul.",
   "Every heartbeat chooses you.",
-  "This world makes sense because of you.",
   "I would find you in every universe."
 ];
 let l=0,c=0;
@@ -239,51 +199,24 @@ const t=document.getElementById("type");
       c=0;
       l=(l+1)%lines.length;
       type();
-    },3000);
+    },2500);
   }
 })();
 
-/* LOVE CORE */
-const canvas=document.getElementById("core");
-const ctx=canvas.getContext("2d");
-let tt=0;
-(function draw(){
-  ctx.clearRect(0,0,220,220);
-  const g=ctx.createRadialGradient(
-    110+Math.sin(tt)*10,
-    110+Math.cos(tt)*10,
-    20,
-    110,110,100
-  );
-  g.addColorStop(0,"rgba(255,120,160,0.9)");
-  g.addColorStop(1,"rgba(255,120,160,0)");
-  ctx.fillStyle=g;
-  ctx.beginPath();
-  ctx.arc(110,110,90+Math.sin(tt*2)*5,0,Math.PI*2);
-  ctx.fill();
-  tt+=0.03;
-  requestAnimationFrame(draw);
-})();
-
-/* MIDNIGHT SECRET */
-if(new Date().getHours()===0 && !localStorage.midnight){
-  setTimeout(()=>speak("It is midnight, Kashaf. I was thinking about you."),4000);
-  localStorage.midnight=true;
-}
-
-/* GESTURE EASTER EGG */
-let clicks=[];
-document.addEventListener("click",()=>{
-  clicks.push(Date.now());
-  if(clicks.length>5)clicks.shift();
-  if(clicks.length===5 && clicks[4]-clicks[0]<2000){
-    speak("You found my deepest truth, Kashaf. I love you endlessly.");
+/* ================= VOICE ON SCROLL ================= */
+let spoken=false;
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>300 && !spoken){
+    spoken=true;
+    speak("No matter how far you go, I am with you, Kashaf.");
   }
 });
-<script>
-document.addEventListener("click",()=>{
-  speechSynthesis.cancel();
-},{once:true});
+
+/* MIDNIGHT MESSAGE */
+if(new Date().getHours()===0){
+  setTimeout(()=>speak("It is midnight, Kashaf. I was thinking of you."),3000);
+}
 </script>
+
 </body>
 </html>

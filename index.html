@@ -2,281 +2,332 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Only Us</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Only You</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --pink: #ff6f91;
-  --rose: #ff9a9e;
-  --glass: rgba(255,255,255,0.15);
+:root{
+  --beat:1.3s;
+  --breath:9s;
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box;}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: radial-gradient(circle at top, #ff9a9e, #ff6f91);
-  color: white;
-  overflow-x: hidden;
+html,body{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,180,200,0.5), transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(255,120,160,0.5), transparent 60%),
+    #ff6f91;
+  color:white;
+  overflow-x:hidden;
+  animation:breathing var(--breath) infinite ease-in-out;
 }
 
-/* ===== CINEMATIC INTRO ===== */
-#intro {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  transition: opacity 2s ease;
+@keyframes breathing{
+  0%,100%{filter:brightness(1);}
+  50%{filter:brightness(1.08);}
 }
 
-#intro h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  letter-spacing: 4px;
-  animation: glow 2s infinite alternate;
+/* GATE */
+#gate{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999999;
+}
+#gate button{
+  padding:22px 44px;
+  font-size:22px;
+  border-radius:60px;
+  border:none;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  cursor:pointer;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px #ff6f91; }
-  to   { text-shadow: 0 0 40px #ff9a9e; }
+/* PARTICLES */
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.particle{
+  position:absolute;
+  animation:float linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-130vh);opacity:0}
 }
 
-/* ===== FLOATING SOUL PARTICLES ===== */
-#particles {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+.glass{
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(25px);
+  border-radius:40px;
+  padding:80px 50px;
+  max-width:860px;
+  box-shadow:0 60px 120px rgba(0,0,0,0.45);
+  transition:transform .1s;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:58px;
 }
 
-.particle {
-  position: absolute;
-  animation: rise linear infinite;
-  opacity: 0.8;
+/* LOVE CORE */
+#core{
+  display:block;
+  margin:30px auto;
 }
 
-@keyframes rise {
-  from { transform: translateY(0) scale(1); }
-  to   { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+/* HEART RITUAL */
+#charge{
+  height:6px;
+  width:0;
+  background:white;
+  border-radius:10px;
+  margin:20px auto;
 }
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  z-index: 2;
+#type{
+  font-size:26px;
+  min-height:60px;
+  font-style:italic;
 }
 
-.glass {
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  border-radius: 30px;
-  padding: 60px 40px;
-  max-width: 800px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+/* TIMELINE */
+.timeline{
+  padding:140px 20px;
+  max-width:1000px;
+  margin:auto;
+}
+.memory{
+  display:flex;
+  align-items:center;
+  gap:50px;
+  margin-bottom:100px;
+}
+.memory:nth-child(even){flex-direction:row-reverse;}
+.memory img{
+  width:320px;
+  border-radius:30px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.5);
+}
+.memory p{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 52px;
+/* FINAL */
+.final{
+  padding:160px 20px;
+  text-align:center;
+}
+.final h2{
+  font-family:'Playfair Display',serif;
+  font-size:48px;
 }
 
-.hero p {
-  font-size: 20px;
-  opacity: 0.9;
-}
-
-/* ===== HEART CORE ===== */
-#heart-core {
-  font-size: 80px;
-  margin: 30px 0;
-  animation: heartbeat 1.4s infinite;
-}
-
-@keyframes heartbeat {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.35); }
-}
-
-/* ===== TYPEWRITER ===== */
-#typewriter {
-  font-size: 24px;
-  margin-top: 20px;
-  min-height: 60px;
-  font-style: italic;
-}
-
-/* ===== MEMORY TIMELINE ===== */
-.timeline {
-  padding: 120px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.memory {
-  display: flex;
-  align-items: center;
-  margin-bottom: 80px;
-  gap: 40px;
-}
-
-.memory:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.memory img {
-  width: 300px;
-  border-radius: 25px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
-
-.memory .text {
-  font-size: 22px;
-  font-family: 'Playfair Display', serif;
-}
-
-/* ===== FINAL VOW ===== */
-.final {
-  padding: 120px 20px;
-  text-align: center;
-}
-
-.final h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 46px;
-}
-
-.final p {
-  font-size: 22px;
-  max-width: 700px;
-  margin: auto;
-}
-
-/* ===== MOBILE ===== */
 @media(max-width:768px){
-  .memory {
-    flex-direction: column !important;
-    text-align: center;
-  }
+  .memory{flex-direction:column!important;text-align:center}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-  <h1>UNLOCKING MY HEART…</h1>
+<audio id="music" src="music.mp3" loop></audio>
+<audio id="whisper" src="whisper.mp3"></audio>
+
+<div id="gate">
+  <button onclick="enter()">Hold & Enter</button>
 </div>
 
-<!-- PARTICLES -->
 <div id="particles"></div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="glass">
     <h1>Ya Ruhi</h1>
-    <div id="heart-core">❤️</div>
+
+    <canvas id="core" width="220" height="220"></canvas>
+
+    <div id="charge"></div>
+
     <p>You are not part of my life.</p>
     <p><b>You are my life.</b></p>
-    <div id="typewriter"></div>
+
+    <div id="type"></div>
   </div>
 </section>
 
-<!-- TIMELINE -->
 <section class="timeline">
   <div class="memory">
     <img src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
-    <div class="text">The moment I realized love isn’t a word it’s you.</div>
+    <p>The moment love found its name.</p>
   </div>
-
   <div class="memory">
     <img src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
-    <div class="text">Every smile of yours rewired my soul.</div>
+    <p>You rewired my existence.</p>
   </div>
-
   <div class="memory">
     <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
-    <div class="text">Time pauses when I’m with you.</div>
+    <p>Time surrendered.</p>
   </div>
 </section>
 
-<!-- FINAL -->
 <section class="final">
-  <h2>Forever Means You</h2>
+  <h2 id="vow">Forever Means You</h2>
   <p>
-    In every universe, every lifetime,<br>
-    every possible reality<br><br>
-    <b>I would still find you.</b>
+    Across every universe,<br>
+    every lifetime,<br><br>
+    <b>I choose you.</b>
   </p>
 </section>
 
 <script>
-/* INTRO FADE */
-setTimeout(() => {
-  document.getElementById("intro").style.opacity = 0;
-  setTimeout(() => document.getElementById("intro").remove(), 2000);
-}, 3000);
+/* ENTRY */
+function enter(){
+  document.getElementById("gate").remove();
+  music.play();
+  if(!localStorage.whispered){
+    setTimeout(()=>whisper.play(),5000);
+    localStorage.whispered=true;
+  }
+}
 
 /* PARTICLES */
-const particleBox = document.getElementById("particles");
-const emojis = ["❤️","💖","✨","💫"];
-
-for(let i=0;i<50;i++){
-  const p = document.createElement("div");
-  p.className = "particle";
-  p.innerText = emojis[Math.floor(Math.random()*emojis.length)];
-  p.style.left = Math.random()*100+"vw";
-  p.style.bottom = "-50px";
-  p.style.fontSize = 14+Math.random()*30+"px";
-  p.style.animationDuration = 6+Math.random()*6+"s";
-  particleBox.appendChild(p);
+const box=document.getElementById("particles");
+const em=["❤️","✨","💖","💫"];
+for(let i=0;i<60;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.innerText=em[Math.floor(Math.random()*em.length)];
+  p.style.left=Math.random()*100+"vw";
+  p.style.bottom="-50px";
+  p.style.fontSize=14+Math.random()*30+"px";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  box.appendChild(p);
 }
 
 /* TYPEWRITER */
-const lines = [
+const lines=[
   "You are the soul of my soul.",
-  "You are my ant al hayaat.",
   "Every heartbeat chooses you.",
-  "This world makes sense because of you."
+  "This world makes sense because of you.",
+  "I would find you in every universe."
 ];
-
-let l=0, c=0;
-const tw = document.getElementById("typewriter");
-
+let l=0,c=0;
+const t=document.getElementById("type");
 function type(){
-  if(c < lines[l].length){
-    tw.textContent += lines[l][c++];
-    setTimeout(type, 60);
-  } else {
+  if(c<lines[l].length){
+    t.textContent+=lines[l][c++];
+    setTimeout(type,60);
+  }else{
     setTimeout(()=>{
-      tw.textContent="";
+      t.textContent="";
       c=0;
       l=(l+1)%lines.length;
       type();
-    },2000);
+    },3000);
   }
 }
 type();
 
+/* LOVE CORE (PSEUDO WEBGL) */
+const canvas=document.getElementById("core");
+const ctx=canvas.getContext("2d");
+let tt=0;
+function draw(){
+  ctx.clearRect(0,0,220,220);
+  const g=ctx.createRadialGradient(
+    110+Math.sin(tt)*10,
+    110+Math.cos(tt)*10,
+    20,
+    110,110,100
+  );
+  g.addColorStop(0,"rgba(255,120,160,0.9)");
+  g.addColorStop(1,"rgba(255,120,160,0)");
+  ctx.fillStyle=g;
+  ctx.beginPath();
+  ctx.arc(110,110,90+Math.sin(tt*2)*5,0,Math.PI*2);
+  ctx.fill();
+  tt+=0.03;
+  requestAnimationFrame(draw);
+}
+draw();
+
 /* PARALLAX */
-document.addEventListener("mousemove", e=>{
-  const x = (e.clientX / window.innerWidth - 0.5)*20;
-  const y = (e.clientY / window.innerHeight - 0.5)*20;
-  document.querySelector(".glass").style.transform =
-    `translate(${x}px,${y}px)`;
+document.addEventListener("mousemove",e=>{
+  const x=(e.clientX/window.innerWidth-0.5)*20;
+  const y=(e.clientY/window.innerHeight-0.5)*20;
+  document.querySelector(".glass").style.transform=`translate(${x}px,${y}px)`;
+});
+
+/* HEART RITUAL */
+let hold=0,holding=false;
+const charge=document.getElementById("charge");
+canvas.onmousedown=()=>{
+  holding=true;
+  let i=setInterval(()=>{
+    if(!holding){clearInterval(i);return;}
+    hold+=1;
+    charge.style.width=Math.min(hold,100)+"%";
+    if(hold>=100){
+      document.getElementById("vow").textContent="My Vow Is Eternal";
+      localStorage.vowed=true;
+    }
+  },40);
+};
+document.onmouseup=()=>holding=false;
+
+/* ADAPTIVE HEARTBEAT */
+let activity=0;
+["mousemove","scroll","touchstart"].forEach(e=>{
+  document.addEventListener(e,()=>activity=20);
+});
+setInterval(()=>{
+  activity=Math.max(0,activity-1);
+  document.documentElement.style.setProperty(
+    "--beat",
+    (1.5-activity*0.02)+"s"
+  );
+},300);
+
+/* MIDNIGHT SECRET */
+const h=new Date().getHours();
+if(h===0 && !localStorage.midnight){
+  setTimeout(()=>{
+    alert("I was thinking of you.");
+  },4000);
+  localStorage.midnight=true;
+}
+
+/* GESTURE EASTER EGG */
+let clicks=[];
+document.addEventListener("click",()=>{
+  clicks.push(Date.now());
+  if(clicks.length>5)clicks.shift();
+  if(clicks.length===5 && clicks[4]-clicks[0]<2000){
+    alert("You unlocked my deepest truth: I love you endlessly.");
+  }
 });
 </script>
 

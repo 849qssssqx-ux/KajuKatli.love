@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Only Us</title>
+<title>Kashaf</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -10,7 +10,6 @@
 <style>
 :root{
   --beat:1.3s;
-  --breath:9s;
 }
 
 *{box-sizing:border-box;}
@@ -24,15 +23,9 @@ html,body{
     #ff6f91;
   color:white;
   overflow-x:hidden;
-  animation:breathing var(--breath) infinite ease-in-out;
 }
 
-@keyframes breathing{
-  0%,100%{filter:brightness(1);}
-  50%{filter:brightness(1.08);}
-}
-
-/* GATE */
+/* ENTRY GATE */
 #gate{
   position:fixed;
   inset:0;
@@ -40,10 +33,10 @@ html,body{
   display:flex;
   align-items:center;
   justify-content:center;
-  z-index:999999;
+  z-index:99999;
 }
 #gate button{
-  padding:22px 44px;
+  padding:22px 46px;
   font-size:22px;
   border-radius:60px;
   border:none;
@@ -52,7 +45,7 @@ html,body{
   cursor:pointer;
 }
 
-/* PARTICLES */
+/* FLOATING ENERGY */
 #particles{
   position:fixed;
   inset:0;
@@ -89,24 +82,13 @@ html,body{
 }
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:58px;
+  font-size:60px;
 }
 
-/* LOVE CORE */
-#core{
-  display:block;
-  margin:30px auto;
-}
+/* CORE */
+#core{display:block;margin:30px auto}
 
-/* HEART RITUAL */
-#charge{
-  height:6px;
-  width:0;
-  background:white;
-  border-radius:10px;
-  margin:20px auto;
-}
-
+/* TYPE */
 #type{
   font-size:26px;
   min-height:60px;
@@ -155,7 +137,6 @@ html,body{
 <body>
 
 <audio id="music" src="music.mp3" loop></audio>
-<audio id="whisper" src="whisper.mp3"></audio>
 
 <div id="gate">
   <button onclick="enter()">Hold & Enter</button>
@@ -165,11 +146,8 @@ html,body{
 
 <section class="hero">
   <div class="glass">
-    <h1>Ya Ruhi</h1>
-
+    <h1>Kashaf</h1>
     <canvas id="core" width="220" height="220"></canvas>
-
-    <div id="charge"></div>
 
     <p>You are not part of my life.</p>
     <p><b>You are my life.</b></p>
@@ -181,63 +159,77 @@ html,body{
 <section class="timeline">
   <div class="memory">
     <img src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
-    <p>The moment love found its name.</p>
+    <p>The moment I learned your name.</p>
   </div>
   <div class="memory">
     <img src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
-    <p>You rewired my existence.</p>
+    <p>Everything changed, Kashaf.</p>
   </div>
   <div class="memory">
     <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
-    <p>Time surrendered.</p>
+    <p>This is what forever feels like.</p>
   </div>
 </section>
 
 <section class="final">
-  <h2 id="vow">Forever Means You</h2>
+  <h2 id="vow">Forever Means Kashaf</h2>
   <p>
     Across every universe,<br>
     every lifetime,<br><br>
-    <b>I choose you.</b>
+    <b>I choose you, Kashaf.</b>
   </p>
 </section>
 
 <script>
+/* STORE NAME PERMANENTLY */
+localStorage.kashafName="Kashaf";
+
+/* AI VOICE */
+function speak(text,soft=true){
+  const u=new SpeechSynthesisUtterance(text);
+  const v=speechSynthesis.getVoices();
+  u.voice=v.find(x=>x.lang.includes("en")&&x.name.toLowerCase().includes("female"))||v[0];
+  u.rate=soft?0.85:1;
+  u.pitch=soft?1.1:1;
+  u.volume=0.75;
+  speechSynthesis.speak(u);
+}
+
 /* ENTRY */
 function enter(){
   document.getElementById("gate").remove();
-  music.play();
-  if(!localStorage.whispered){
-    setTimeout(()=>whisper.play(),5000);
-    localStorage.whispered=true;
+  document.getElementById("music").play();
+  if(!localStorage.aiWelcome){
+    setTimeout(()=>speak("Kashaf... I was waiting for you."),1800);
+    localStorage.aiWelcome=true;
   }
 }
 
 /* PARTICLES */
 const box=document.getElementById("particles");
-const em=["❤️","✨","💖","💫"];
-for(let i=0;i<60;i++){
-  let p=document.createElement("div");
-  p.className="particle";
-  p.innerText=em[Math.floor(Math.random()*em.length)];
-  p.style.left=Math.random()*100+"vw";
-  p.style.bottom="-50px";
-  p.style.fontSize=14+Math.random()*30+"px";
-  p.style.animationDuration=6+Math.random()*6+"s";
-  box.appendChild(p);
-}
+["❤️","✨","💖","💫"].forEach((e,i)=>{
+  for(let j=0;j<15;j++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.innerText=e;
+    p.style.left=Math.random()*100+"vw";
+    p.style.bottom="-50px";
+    p.style.fontSize=14+Math.random()*30+"px";
+    p.style.animationDuration=6+Math.random()*6+"s";
+    box.appendChild(p);
+  }
+});
 
-/* TYPEWRITER */
+/* TYPE */
 const lines=[
-  "You are the soul of my soul.",
-  "You are my Ant al Hayaat.",
+  "Kashaf, you are the soul of my soul.",
   "Every heartbeat chooses you.",
   "This world makes sense because of you.",
   "I would find you in every universe."
 ];
 let l=0,c=0;
 const t=document.getElementById("type");
-function type(){
+(function type(){
   if(c<lines[l].length){
     t.textContent+=lines[l][c++];
     setTimeout(type,60);
@@ -249,14 +241,13 @@ function type(){
       type();
     },3000);
   }
-}
-type();
+})();
 
-/* LOVE CORE (PSEUDO WEBGL) */
+/* LOVE CORE */
 const canvas=document.getElementById("core");
 const ctx=canvas.getContext("2d");
 let tt=0;
-function draw(){
+(function draw(){
   ctx.clearRect(0,0,220,220);
   const g=ctx.createRadialGradient(
     110+Math.sin(tt)*10,
@@ -272,52 +263,11 @@ function draw(){
   ctx.fill();
   tt+=0.03;
   requestAnimationFrame(draw);
-}
-draw();
-
-/* PARALLAX */
-document.addEventListener("mousemove",e=>{
-  const x=(e.clientX/window.innerWidth-0.5)*20;
-  const y=(e.clientY/window.innerHeight-0.5)*20;
-  document.querySelector(".glass").style.transform=`translate(${x}px,${y}px)`;
-});
-
-/* HEART RITUAL */
-let hold=0,holding=false;
-const charge=document.getElementById("charge");
-canvas.onmousedown=()=>{
-  holding=true;
-  let i=setInterval(()=>{
-    if(!holding){clearInterval(i);return;}
-    hold+=1;
-    charge.style.width=Math.min(hold,100)+"%";
-    if(hold>=100){
-      document.getElementById("vow").textContent="My Vow Is Eternal";
-      localStorage.vowed=true;
-    }
-  },40);
-};
-document.onmouseup=()=>holding=false;
-
-/* ADAPTIVE HEARTBEAT */
-let activity=0;
-["mousemove","scroll","touchstart"].forEach(e=>{
-  document.addEventListener(e,()=>activity=20);
-});
-setInterval(()=>{
-  activity=Math.max(0,activity-1);
-  document.documentElement.style.setProperty(
-    "--beat",
-    (1.5-activity*0.02)+"s"
-  );
-},300);
+})();
 
 /* MIDNIGHT SECRET */
-const h=new Date().getHours();
-if(h===0 && !localStorage.midnight){
-  setTimeout(()=>{
-    alert("I was thinking of you.");
-  },4000);
+if(new Date().getHours()===0 && !localStorage.midnight){
+  setTimeout(()=>speak("It is midnight, Kashaf. I was thinking about you."),4000);
   localStorage.midnight=true;
 }
 
@@ -327,7 +277,7 @@ document.addEventListener("click",()=>{
   clicks.push(Date.now());
   if(clicks.length>5)clicks.shift();
   if(clicks.length===5 && clicks[4]-clicks[0]<2000){
-    alert("You unlocked my deepest truth: I love you endlessly.");
+    speak("You found my deepest truth, Kashaf. I love you endlessly.");
   }
 });
 </script>

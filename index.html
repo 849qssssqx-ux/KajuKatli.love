@@ -4,8 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Love ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -14,81 +21,85 @@ body {
   text-align: center;
   overflow-x: hidden;
 }
+
+/* Sections */
 .section {
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
+
 h1, h2 {
   font-family: 'Playfair Display', serif;
 }
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Beating Heart */
 .heart {
-  font-size: 40px;
-  animation: beat 1.5s infinite;
+  font-size: 60px;
+  margin-top: 20px;
+  animation: beat 1.2s infinite;
 }
+
 @keyframes beat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
 }
-.gallery img {
-  width: 200px;
-  border-radius: 20px;
-  margin: 10px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
+
+/* Reasons */
 .reasons {
   max-width: 600px;
   margin: auto;
   text-align: left;
-}
-footer {
-  padding: 30px;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 18px;
 }
 
-/* Floating Hearts */
-#floating-hearts {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 9999;
-}
-.floating-heart {
-  position: absolute;
-  top: 100%;
-  animation: floatUp linear infinite;
-}
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+.reasons p {
+  margin: 15px 0;
 }
 
-/* Quotes / Lines */
+/* Quote Box */
 #quote-box {
-  margin: 50px auto;
-  max-width: 600px;
-  font-size: 22px;
+  margin: 40px auto;
+  max-width: 650px;
+  font-size: 24px;
   font-style: italic;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1s ease;
 }
 
 /* Slideshow */
 .slideshow-container {
-  max-width: 600px;
+  max-width: 650px;
   position: relative;
   margin: auto;
-  border-radius: 20px;
+  border-radius: 25px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
+
 .slide {
   display: none;
   width: 100%;
+  animation: fade 1.2s;
 }
+
+@keyframes fade {
+  from {opacity: .3}
+  to {opacity: 1}
+}
+
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -96,113 +107,164 @@ footer {
   transform: translateY(-50%);
   color: white;
   font-size: 30px;
-  padding: 10px;
-  background: rgba(0,0,0,0.3);
+  padding: 12px;
+  background: rgba(0,0,0,0.4);
   border-radius: 50%;
   user-select: none;
 }
-.prev { left: 10px; }
-.next { right: 10px; }
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Footer */
+footer {
+  padding: 40px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Floating Hearts */
+#floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
 </style>
 </head>
+
 <body>
 
 <!-- Floating Hearts -->
 <div id="floating-hearts"></div>
 
+<!-- Hero -->
 <div class="section">
   <h1>To My Beautiful Girl 💕</h1>
-  <p>You are my favorite thought, my happiest place, and my forever.</p>
+  <p>You are my favorite thought, my safest place, my forever.</p>
   <div class="heart">❤️</div>
 </div>
 
+<!-- Reasons -->
 <div class="section">
   <h2>Why I Love You</h2>
   <div class="reasons">
-    <p>🌸 Your smile makes my worst days better</p>
-    <p>🌸 You understand me like no one else</p>
-    <p>🌸 You make life feel magical</p>
-    <p>🌸 You are my safe place</p>
+    <p>🌸 Your smile fixes my worst days</p>
+    <p>🌸 Your voice feels like home</p>
+    <p>🌸 You understand my silence</p>
+    <p>🌸 You make ordinary moments magical</p>
+    <p>🌸 With you, life feels complete</p>
   </div>
 </div>
 
-<!-- Quotes Section -->
+<!-- Quotes -->
 <div class="section">
-  <h2>Meethi Baatein</h2>
-  <div id="quote-box">I love you to the moon and back.</div>
+  <h2>Meethi Baatein 💌</h2>
+  <div id="quote-box"></div>
 </div>
 
-<!-- Slideshow Section -->
+<!-- Slideshow -->
 <div class="section">
   <h2>Our Memories 📸</h2>
   <div class="slideshow-container">
     <img class="slide" src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
     <img class="slide" src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
     <img class="slide" src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
+
     <span class="prev">&#10094;</span>
     <span class="next">&#10095;</span>
   </div>
 </div>
 
+<!-- Ending -->
 <div class="section">
   <h2>Forever With You 💖</h2>
-  <p>No matter where life takes us, I choose you. Always.</p>
+  <p>
+    If I had to choose again in every lifetime,<br>
+    I would still choose you — every single time.
+  </p>
 </div>
 
 <footer>
-  For My One and Only.
+  Made with endless love ❤️
 </footer>
 
-<!-- Scripts -->
 <script>
 // Floating Hearts
-const colors = ["#ff5e6c", "#ff94a0", "#ff7eb3", "#ff758c"];
-const numHearts = 20;
-for (let i = 0; i < numHearts; i++) {
+const heartContainer = document.getElementById("floating-hearts");
+const heartEmojis = ["❤️","💖","💘","💋"];
+
+for (let i = 0; i < 30; i++) {
   const heart = document.createElement("div");
-  heart.classList.add("floating-heart");
+  heart.className = "floating-heart";
+  heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
-  heart.style.fontSize = 10 + Math.random() * 30 + "px";
-  heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-  heart.innerText = "❤️,💋";
-  document.getElementById("floating-hearts").appendChild(heart);
+  heart.style.fontSize = 15 + Math.random() * 30 + "px";
+  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+  heartContainer.appendChild(heart);
 }
 
-// Quotes Rotation
+// Quotes
 const quotes = [
-  "I love you to the moon and back.",
-  "You are my ruhi my ant al hayaat.",
-  "You are my BATATATATATATATA.",
-  "You are my sunshine on a rainy day.",
-  "Every moment with you is magic."
-  ];
+  "Ya Ruhi, you are the soul of my soul ❤️",
+  "You are my ant al hayaat.",
+  "Every heartbeat whispers your name.",
+  "You are my forever and always.",
+  "Loving you is my favorite thing.",
+  "If love had a face, it would look like you."
+];
+
 let quoteIndex = 0;
 const quoteBox = document.getElementById("quote-box");
+
 function showQuote() {
   quoteBox.style.opacity = 0;
   setTimeout(() => {
-    quoteBox.innerText = quotes[quoteIndex];
+    quoteBox.textContent = quotes[quoteIndex];
     quoteBox.style.opacity = 1;
     quoteIndex = (quoteIndex + 1) % quotes.length;
-  }, 500);
+  }, 600);
 }
-setInterval(showQuote, 4000);
 showQuote();
+setInterval(showQuote, 4000);
 
 // Slideshow
 let slideIndex = 0;
 const slides = document.getElementsByClassName("slide");
-function showSlide(n)
-  for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
-  slides[n].style.display = "block";
+
+function showSlide(index) {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[index].style.display = "block";
 }
-function nextSlide() { slideIndex = (slideIndex+1) % slides.length; showSlide(slideIndex); }
-function prevSlide() { slideIndex = (slideIndex-1+slides.length) % slides.length; showSlide(slideIndex); }
+
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % slides.length;
+  showSlide(slideIndex);
+}
+
+function prevSlide() {
+  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+  showSlide(slideIndex);
+}
+
 document.querySelector(".next").onclick = nextSlide;
 document.querySelector(".prev").onclick = prevSlide;
+
 showSlide(slideIndex);
-setInterval(nextSlide, 5000); // Auto slide
+setInterval(nextSlide, 5000);
 </script>
 
 </body>

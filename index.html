@@ -3,268 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love ❤️</title>
+<title>Only You</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
+:root {
+  --pink: #ff6f91;
+  --rose: #ff9a9e;
+  --glass: rgba(255,255,255,0.15);
 }
 
-body {
+* { box-sizing: border-box; }
+
+html, body {
   margin: 0;
+  padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  background: radial-gradient(circle at top, #ff9a9e, #ff6f91);
   color: white;
-  text-align: center;
   overflow-x: hidden;
 }
 
-/* Sections */
-.section {
-  padding: 80px 20px;
+/* ===== CINEMATIC INTRO ===== */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 2s ease;
 }
 
-h1, h2 {
+#intro h1 {
   font-family: 'Playfair Display', serif;
-}
-
-h1 {
   font-size: 42px;
+  letter-spacing: 4px;
+  animation: glow 2s infinite alternate;
 }
 
-h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff6f91; }
+  to   { text-shadow: 0 0 40px #ff9a9e; }
 }
 
-p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* Beating Heart */
-.heart {
-  font-size: 60px;
-  margin-top: 20px;
-  animation: beat 1.2s infinite;
-}
-
-@keyframes beat {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.3); }
-}
-
-/* Reasons */
-.reasons {
-  max-width: 600px;
-  margin: auto;
-  text-align: left;
-  font-size: 18px;
-}
-
-.reasons p {
-  margin: 15px 0;
-}
-
-/* Quote Box */
-#quote-box {
-  margin: 40px auto;
-  max-width: 650px;
-  font-size: 24px;
-  font-style: italic;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-/* Slideshow */
-.slideshow-container {
-  max-width: 650px;
-  position: relative;
-  margin: auto;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.slide {
-  display: none;
-  width: 100%;
-  animation: fade 1.2s;
-}
-
-@keyframes fade {
-  from {opacity: .3}
-  to {opacity: 1}
-}
-
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: white;
-  font-size: 30px;
-  padding: 12px;
-  background: rgba(0,0,0,0.4);
-  border-radius: 50%;
-  user-select: none;
-}
-
-.prev { left: 15px; }
-.next { right: 15px; }
-
-/* Footer */
-footer {
-  padding: 40px;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* Floating Hearts */
-#floating-hearts {
+/* ===== FLOATING SOUL PARTICLES ===== */
+#particles {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 999;
+  z-index: 1;
 }
 
-.floating-heart {
+.particle {
   position: absolute;
-  bottom: -50px;
-  animation: floatUp linear infinite;
+  animation: rise linear infinite;
+  opacity: 0.8;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+@keyframes rise {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 60px 40px;
+  max-width: 800px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+}
+
+.hero p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* ===== HEART CORE ===== */
+#heart-core {
+  font-size: 80px;
+  margin: 30px 0;
+  animation: heartbeat 1.4s infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+/* ===== TYPEWRITER ===== */
+#typewriter {
+  font-size: 24px;
+  margin-top: 20px;
+  min-height: 60px;
+  font-style: italic;
+}
+
+/* ===== MEMORY TIMELINE ===== */
+.timeline {
+  padding: 120px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.memory {
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+
+.memory:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.memory img {
+  width: 300px;
+  border-radius: 25px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.memory .text {
+  font-size: 22px;
+  font-family: 'Playfair Display', serif;
+}
+
+/* ===== FINAL VOW ===== */
+.final {
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.final h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 46px;
+}
+
+.final p {
+  font-size: 22px;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .memory {
+    flex-direction: column !important;
+    text-align: center;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Floating Hearts -->
-<div id="floating-hearts"></div>
-
-<!-- Hero -->
-<div class="section">
-  <h1>To My Beautiful Girl 💕</h1>
-  <p>You are my favorite thought, my safest place, my forever.</p>
-  <div class="heart">❤️</div>
+<!-- INTRO -->
+<div id="intro">
+  <h1>UNLOCKING MY HEART…</h1>
 </div>
 
-<!-- Reasons -->
-<div class="section">
-  <h2>Why I Love You</h2>
-  <div class="reasons">
-    <p>🌸 Your smile fixes my worst days</p>
-    <p>🌸 Your voice feels like home</p>
-    <p>🌸 You understand my silence</p>
-    <p>🌸 You make ordinary moments magical</p>
-    <p>🌸 With you, life feels complete</p>
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="glass">
+    <h1>Ya Ruhi</h1>
+    <div id="heart-core">❤️</div>
+    <p>You are not part of my life.</p>
+    <p><b>You are my life.</b></p>
+    <div id="typewriter"></div>
   </div>
-</div>
+</section>
 
-<!-- Quotes -->
-<div class="section">
-  <h2>Meethi Baatein</h2>
-  <div id="quote-box"></div>
-</div>
-
-<!-- Slideshow -->
-<div class="section">
-  <h2>Our Memories 📸</h2>
-  <div class="slideshow-container">
-    <img class="slide" src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
-    <img class="slide" src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
-    <img class="slide" src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
-
-    <span class="prev">&#10094;</span>
-    <span class="next">&#10095;</span>
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="memory">
+    <img src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
+    <div class="text">The moment I realized love isn’t a word it’s you.</div>
   </div>
-</div>
 
-<!-- Ending -->
-<div class="section">
-  <h2>Forever With You 💖</h2>
+  <div class="memory">
+    <img src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
+    <div class="text">Every smile of yours rewired my soul.</div>
+  </div>
+
+  <div class="memory">
+    <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
+    <div class="text">Time pauses when I’m with you.</div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <h2>Forever Means You</h2>
   <p>
-    If I had to choose again in every lifetime,<br>
-    I would still choose you every single time.
+    In every universe, every lifetime,<br>
+    every possible reality —<br><br>
+    <b>I would still find you.</b>
   </p>
-</div>
-
-<footer>
-  Made with endless love ❤️
-</footer>
+</section>
 
 <script>
-// Floating Hearts
-const heartContainer = document.getElementById("floating-hearts");
-const heartEmojis = ["❤️","💖","💘","💋"];
+/* INTRO FADE */
+setTimeout(() => {
+  document.getElementById("intro").style.opacity = 0;
+  setTimeout(() => document.getElementById("intro").remove(), 2000);
+}, 3000);
 
-for (let i = 0; i < 30; i++) {
-  const heart = document.createElement("div");
-  heart.className = "floating-heart";
-  heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = 15 + Math.random() * 30 + "px";
-  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-  heartContainer.appendChild(heart);
+/* PARTICLES */
+const particleBox = document.getElementById("particles");
+const emojis = ["❤️","💖","✨","💫"];
+
+for(let i=0;i<50;i++){
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+  p.style.left = Math.random()*100+"vw";
+  p.style.bottom = "-50px";
+  p.style.fontSize = 14+Math.random()*30+"px";
+  p.style.animationDuration = 6+Math.random()*6+"s";
+  particleBox.appendChild(p);
 }
 
-// Quotes
-const quotes = [
-  "Ya Ruhi, you are the soul of my soul ❤️",
+/* TYPEWRITER */
+const lines = [
+  "You are the soul of my soul.",
   "You are my ant al hayaat.",
-  "Every heartbeat whispers your name.",
-  "You are my forever and always.",
-  "Loving you is my favorite thing.",
-  "If love had a face, it would look like you."
+  "Every heartbeat chooses you.",
+  "This world makes sense because of you."
 ];
 
-let quoteIndex = 0;
-const quoteBox = document.getElementById("quote-box");
+let l=0, c=0;
+const tw = document.getElementById("typewriter");
 
-function showQuote() {
-  quoteBox.style.opacity = 0;
-  setTimeout(() => {
-    quoteBox.textContent = quotes[quoteIndex];
-    quoteBox.style.opacity = 1;
-    quoteIndex = (quoteIndex + 1) % quotes.length;
-  }, 600);
-}
-showQuote();
-setInterval(showQuote, 4000);
-
-// Slideshow
-let slideIndex = 0;
-const slides = document.getElementsByClassName("slide");
-
-function showSlide(index) {
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+function type(){
+  if(c < lines[l].length){
+    tw.textContent += lines[l][c++];
+    setTimeout(type, 60);
+  } else {
+    setTimeout(()=>{
+      tw.textContent="";
+      c=0;
+      l=(l+1)%lines.length;
+      type();
+    },2000);
   }
-  slides[index].style.display = "block";
 }
+type();
 
-function nextSlide() {
-  slideIndex = (slideIndex + 1) % slides.length;
-  showSlide(slideIndex);
-}
-
-function prevSlide() {
-  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-  showSlide(slideIndex);
-}
-
-document.querySelector(".next").onclick = nextSlide;
-document.querySelector(".prev").onclick = prevSlide;
-
-showSlide(slideIndex);
-setInterval(nextSlide, 5000);
+/* PARALLAX */
+document.addEventListener("mousemove", e=>{
+  const x = (e.clientX / window.innerWidth - 0.5)*20;
+  const y = (e.clientY / window.innerHeight - 0.5)*20;
+  document.querySelector(".glass").style.transform =
+    `translate(${x}px,${y}px)`;
+});
 </script>
 
 </body>

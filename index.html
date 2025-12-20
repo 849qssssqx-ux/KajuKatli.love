@@ -14,7 +14,8 @@ body{
   overflow-x:hidden;
   overflow-y:auto;
 }
-/* glow */
+
+/* glow effect */
 body::before{
   content:"";
   position:fixed; inset:0;
@@ -25,7 +26,7 @@ body::before{
 }
 @keyframes glow{0%,100%{opacity:.6}50%{opacity:1}}
 
-/* gate */
+/* gate entering ritual */
 #gate{
   position:fixed; inset:0;
   background:linear-gradient(135deg,#ffb3ec,#c77dff);
@@ -74,8 +75,19 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
 @keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
 
 /* fairy emojis */
-.fairy{position:fixed;animation:riseParticles linear infinite;pointer-events:none;font-size:22px}
-@keyframes riseParticles{from{transform:translateY(120vh);opacity:0)}to{transform:translateY(-140vh);opacity:1}}
+.fairy{
+  position:fixed;
+  pointer-events:none;
+  font-size:24px;
+  opacity:1;
+  animation-name:riseParticles;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+@keyframes riseParticles {
+  0% { transform:translateY(100vh) rotate(0deg); opacity:1; }
+  100% { transform:translateY(-50vh) rotate(360deg); opacity:0; }
+}
 
 /* cursor trail */
 .trail{position:fixed;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.8);pointer-events:none;animation:fade 1s linear forwards}
@@ -91,7 +103,7 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
 </head>
 <body>
 
-<!-- EMBEDDED MUSIC (BASE64 MP3 SAMPLE, replace with your own if desired) -->
+<!-- EMBEDDED MUSIC -->
 <audio id="music" loop autoplay>
   <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAw..." type="audio/mp3">
 </audio>
@@ -134,7 +146,7 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   </div>
 </section>
 
-<!-- SLIDER SECTION -->
+<!-- SLIDER -->
 <div class="slider" id="slider">
   <div class="slide"><h1>Kashaf you are always safe with me</h1></div>
   <div class="slide"><h1>You are deeply loved and cherished Kashaf</h1></div>
@@ -144,7 +156,7 @@ section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4)
   <div class="slide"><h1>I am right here forever Kashaf</h1></div>
 </div>
 
-<!-- MIDNIGHT MESSAGE -->
+<!-- MIDNIGHT -->
 <div id="midnight">
   <h3>It is midnight and I am thinking of you Kashaf</h3>
 </div>
@@ -173,16 +185,21 @@ setInterval(()=>{
 },6000);
 
 /* FAIRY EMOJIS */
-const icons=["✨","💖","🌸","💫","🧚"];
-for(let i=0;i<60;i++){
+const fairyIcons=["✨","💖","🌸","💫","🧚"];
+function createFairy(){
   const f=document.createElement("div");
   f.className="fairy";
-  f.textContent=icons[Math.floor(Math.random()*icons.length)];
+  f.textContent=fairyIcons[Math.floor(Math.random()*fairyIcons.length)];
   f.style.left=Math.random()*100+"vw";
-  f.style.fontSize=18+Math.random()*28+"px";
-  f.style.animationDuration=10+Math.random()*12+"s";
+  f.style.fontSize=(18+Math.random()*30)+"px";
+  f.style.animationDuration=(8+Math.random()*8)+"s";
   document.body.appendChild(f);
+  setTimeout(()=>f.remove(),(8+Math.random()*8)*1000);
 }
+// spawn initial fairies
+for(let i=0;i<50;i++){setTimeout(createFairy,i*200)}
+// continue spawning
+setInterval(createFairy,800);
 
 /* CURSOR TRAIL */
 document.addEventListener("mousemove",e=>{
@@ -194,7 +211,7 @@ document.addEventListener("mousemove",e=>{
   setTimeout(()=>t.remove(),1000);
 });
 
-/* MIDNIGHT TIMER */
+/* MIDNIGHT */
 setInterval(()=>{
   const d=new Date();
   if(d.getHours()===0 && d.getMinutes()===0){
@@ -221,7 +238,7 @@ function speakQuote(){
   if(slides[index]) speakText(slides[index].innerText);
 }
 
-/* MUSIC UNLOCK ON CLICK */
+/* MUSIC CLICK UNLOCK */
 document.addEventListener("click",()=>{
   const m=document.getElementById("music");
   if(m) m.play().catch(()=>{});

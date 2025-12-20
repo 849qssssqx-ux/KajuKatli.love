@@ -2,221 +2,121 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Kashaf Fairy Love Ultimate</title>
+<title>Kashaf Magical Love</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Montserrat,sans-serif;
-  background:linear-gradient(180deg,#ffd6ff,#e7c6ff,#c77dff,#9d4edd);
-  color:white;
-  overflow-x:hidden;
-  overflow-y:auto;
-}
-body::before{
-  content:"";
-  position:fixed; inset:0;
-  background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 40%),
-             radial-gradient(circle at 80% 80%,rgba(255,255,255,.2),transparent 40%);
-  pointer-events:none;
-  animation:glow 12s ease-in-out infinite;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Montserrat,sans-serif;background:linear-gradient(180deg,#ffd6ff,#e7c6ff,#c77dff,#9d4edd);color:white;overflow-x:hidden;overflow-y:auto;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 40%),radial-gradient(circle at 80% 80%,rgba(255,255,255,.2),transparent 40%);pointer-events:none;animation:glow 12s ease-in-out infinite;}
 @keyframes glow{0%,100%{opacity:.6}50%{opacity:1}}
-
-#gate{
-  position:fixed; inset:0;
-  background:linear-gradient(135deg,#ffb3ec,#c77dff);
-  display:flex; align-items:center; justify-content:center; z-index:9999;
-  flex-direction:column; overflow:hidden;
-}
-#gate h1{
-  font-family:Playfair Display,serif;
-  font-size:60px;
-  opacity:0;
-  animation:fadeIn 2s forwards;
-}
-#gate button{
-  margin-top:40px;
-  padding:26px 60px;
-  font-size:22px;
-  border:none;
-  border-radius:60px;
-  background:white;
-  color:#9d4edd;
-  cursor:pointer;
-  box-shadow:0 30px 60px rgba(0,0,0,.35);
-  transform:scale(0);
-  animation:buttonPop 2s forwards 1s;
-}
+#gate{position:fixed;inset:0;background:linear-gradient(135deg,#ffb3ec,#c77dff);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;overflow:hidden;}
+#gate h1{font-family:Playfair Display,serif;font-size:60px;opacity:0;animation:fadeIn 2s forwards;}
+#gate button{margin-top:40px;padding:26px 60px;font-size:22px;border:none;border-radius:60px;background:white;color:#9d4edd;cursor:pointer;box-shadow:0 30px 60px rgba(0,0,0,.35);transform:scale(0);animation:buttonPop 2s forwards 1s;}
 @keyframes fadeIn{0%{opacity:0;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
 @keyframes buttonPop{0%{transform:scale(0)}100%{transform:scale(1)}}
 
-header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px}
-header h1{font-family:Playfair Display,serif;font-size:72px}
-header p{font-size:26px;max-width:900px;margin-top:30px}
+header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px;}
+header h1{font-family:Playfair Display,serif;font-size:72px;}
+header p{font-size:26px;max-width:900px;margin-top:30px;}
 
-section{padding:120px 10%;display:flex;align-items:center;gap:80px}
-section:nth-child(even){flex-direction:row-reverse}
-section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4);animation:float 6s ease-in-out infinite}
+section{padding:120px 10%;display:flex;align-items:center;gap:80px;}
+section:nth-child(even){flex-direction:row-reverse;}
+section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4);animation:float 6s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-.text{max-width:700px}
-.text h2{font-family:Playfair Display,serif;font-size:48px;margin-bottom:30px}
-.text p{font-size:22px;line-height:1.7}
+.text{max-width:700px;}
+.text h2{font-family:Playfair Display,serif;font-size:48px;margin-bottom:30px;}
+.text p{font-size:22px;line-height:1.7;}
 
-.slider{display:flex;height:100vh;width:100vw;transition:transform 2s cubic-bezier(.77,0,.18,1)}
-.slide{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px}
-.slide h1{font-family:Playfair Display,serif;font-size:68px;max-width:900px;opacity:0;animation:rise 3s ease forwards}
+.slider{display:flex;height:100vh;width:100vw;transition:transform 2s cubic-bezier(.77,0,.18,1);}
+.slide{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px;}
+.slide h1{font-family:Playfair Display,serif;font-size:68px;max-width:900px;opacity:0;animation:rise 3s ease forwards;}
 @keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
 
-.fairy{
-  position:fixed;
-  pointer-events:none;
-  font-size:24px;
-  opacity:1;
-  animation-name:riseParticles;
-  animation-timing-function:linear;
-  animation-iteration-count:infinite;
-}
-@keyframes riseParticles {
-  0% { transform:translateY(100vh) rotate(0deg); opacity:1; }
-  100% { transform:translateY(-50vh) rotate(360deg); opacity:0; }
-}
+.fairy{position:fixed;pointer-events:none;font-size:24px;opacity:1;animation-name:riseParticles;animation-timing-function:linear;animation-iteration-count:infinite;}
+@keyframes riseParticles{0%{transform:translateY(100vh) rotate(0deg);opacity:1;}100%{transform:translateY(-50vh) rotate(360deg);opacity:0;}}
 
-.trail{position:fixed;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.8);pointer-events:none;animation:fade 1s linear forwards}
-@keyframes fade{to{opacity:0;transform:scale(2)}}
+.trail{position:fixed;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.8);pointer-events:none;animation:fade 1s linear forwards;}
+@keyframes fade{to{opacity:0;transform:scale(2);}}
 
-#midnight{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;text-align:center}
-#midnight h3{font-family:Playfair Display,serif;font-size:54px;max-width:900px}
+#midnight{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;text-align:center;}
+#midnight h3{font-family:Playfair Display,serif;font-size:54px;max-width:900px;}
 
 @media(max-width:900px){section{flex-direction:column!important;text-align:center}section img{width:90%}}
 </style>
 </head>
 <body>
 
-<!-- Enter Gate Ritual -->
 <div id="gate">
-  <h1>Welcome to Kashaf's World</h1>
-  <button onclick="enter()">Enter the Magical World</button>
+<h1>Welcome to Kashaf's Magical World</h1>
+<button onclick="enter()">Enter the Magical World</button>
 </div>
 
 <header>
-  <div>
-    <h1>Kashaf</h1>
-    <p>This space exists only for you a place where love never questions never rushes and never leaves</p>
-  </div>
+<h1>Kashaf</h1>
+<p>This space exists only for you a place where love never questions never rushes and never leaves</p>
 </header>
 
 <section>
-  <img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg">
-  <div class="text">
-    <h2>You are safe</h2>
-    <p>Kashaf you never have to be strong here you never have to explain your heart you never have to wonder if you are enough because in my world you already are completely deeply endlessly</p>
-  </div>
+<img src="data:image/jpeg;base64,/9j/PLACEHOLDER_IMAGE1_BASE64" />
+<div class="text"><h2>You are safe</h2><p>Kashaf you never have to be strong here you never have to explain your heart you never have to wonder if you are enough because in my world you already are completely deeply endlessly</p></div>
 </section>
 
 <section>
-  <img src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg">
-  <div class="text">
-    <h2>You are chosen</h2>
-    <p>I choose you in quiet moments I choose you in chaos I choose you when words fail and when the world feels heavy there is no hesitation no replacement only you Kashaf</p>
-  </div>
+<img src="data:image/jpeg;base64,/9j/PLACEHOLDER_IMAGE2_BASE64" />
+<div class="text"><h2>You are chosen</h2><p>I choose you in quiet moments I choose you in chaos I choose you when words fail and when the world feels heavy there is no hesitation no replacement only you Kashaf</p></div>
 </section>
 
 <section>
-  <img src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg">
-  <div class="text">
-    <h2>You are loved</h2>
-    <p>This love does not demand it protects it does not rush it waits it does not fade it stays softly firmly faithfully with you Kashaf always</p>
-  </div>
+<img src="data:image/jpeg;base64,/9j/PLACEHOLDER_IMAGE3_BASE64" />
+<div class="text"><h2>You are loved</h2><p>This love does not demand it protects it does not rush it waits it does not fade it stays softly firmly faithfully with you Kashaf always</p></div>
 </section>
 
 <div class="slider" id="slider">
-  <div class="slide"><h1>Kashaf you are always safe with me</h1></div>
-  <div class="slide"><h1>You are deeply loved and cherished Kashaf</h1></div>
-  <div class="slide"><h1>I choose you in every lifetime Kashaf</h1></div>
-  <div class="slide"><h1>You never have to worry or doubt Kashaf</h1></div>
-  <div class="slide"><h1>This love is gentle warm and eternal Kashaf</h1></div>
-  <div class="slide"><h1>I am right here forever Kashaf</h1></div>
+<div class="slide"><h1>Kashaf you are always safe with me</h1></div>
+<div class="slide"><h1>You are deeply loved and cherished Kashaf</h1></div>
+<div class="slide"><h1>I choose you in every lifetime Kashaf</h1></div>
+<div class="slide"><h1>You never have to worry or doubt Kashaf</h1></div>
+<div class="slide"><h1>This love is gentle warm and eternal Kashaf</h1></div>
+<div class="slide"><h1>I am right here forever Kashaf</h1></div>
 </div>
 
 <div id="midnight">
-  <h3>It is midnight and I am thinking of you Kashaf</h3>
+<h3>It is midnight and I am thinking of you Kashaf</h3>
 </div>
 
 <script>
-function enter(){
-  const gate=document.getElementById("gate");
-  gate.style.transition="all 2s ease";
-  gate.style.transform="scale(0)";
-  gate.style.opacity="0";
-  setTimeout(()=>gate.style.display="none",2000);
-  speakQuote();
-}
+document.addEventListener("DOMContentLoaded",()=>{
+
+function enter(){document.getElementById("gate").style.display="none";speakQuote();}
 
 let index=0;
 const slider=document.getElementById("slider");
 const slides=slider.getElementsByClassName("slide");
-setInterval(()=>{
-  index=(index+1)%slides.length;
-  slider.style.transform=`translateX(-${index*100}vw)`;
-  speakQuote();
-},6000);
+setInterval(()=>{index=(index+1)%slides.length;slider.style.transform=`translateX(-${index*100}vw)`;speakQuote();},6000);
 
 const fairyIcons=["✨","💖","🌸","💫","🧚"];
-function createFairy(){
-  const f=document.createElement("div");
-  f.className="fairy";
-  f.textContent=fairyIcons[Math.floor(Math.random()*fairyIcons.length)];
-  f.style.left=Math.random()*100+"vw";
-  f.style.fontSize=(18+Math.random()*30)+"px";
-  f.style.animationDuration=(8+Math.random()*8)+"s";
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),(8+Math.random()*8)*1000);
-}
+function createFairy(){const f=document.createElement("div");f.className="fairy";f.textContent=fairyIcons[Math.floor(Math.random()*fairyIcons.length)];f.style.left=Math.random()*100+"vw";f.style.fontSize=(18+Math.random()*30)+"px";f.style.animationDuration=(8+Math.random()*8)+"s";document.body.appendChild(f);setTimeout(()=>f.remove(),(8+Math.random()*8)*1000);}
 for(let i=0;i<50;i++){setTimeout(createFairy,i*200)}
 setInterval(createFairy,800);
 
-document.addEventListener("mousemove",e=>{
-  const t=document.createElement("div");
-  t.className="trail";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),1000);
-});
+document.addEventListener("mousemove",e=>{const t=document.createElement("div");t.className="trail";t.style.left=e.clientX+"px";t.style.top=e.clientY+"px";document.body.appendChild(t);setTimeout(()=>t.remove(),1000);});
 
-setInterval(()=>{
-  const d=new Date();
-  if(d.getHours()===0 && d.getMinutes()===0){
-    document.getElementById("midnight").style.display="flex";
-    speakText("It is midnight and I am thinking of you Kashaf");
-  }
-},1000);
+setInterval(()=>{const d=new Date();if(d.getHours()===0&&d.getMinutes()===0){document.getElementById("midnight").style.display="flex";speakText("It is midnight and I am thinking of you Kashaf");}},1000);
 
 let voices=[];
 function loadVoices(){voices=speechSynthesis.getVoices();}
 speechSynthesis.onvoiceschanged=loadVoices;
 loadVoices();
 
-function speakText(text){
-  try{
-    speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text);
-    u.voice=voices.find(v=>v.lang.startsWith("en")&&v.name.toLowerCase().includes("female"))||voices[0];
-    u.rate=0.85; u.pitch=1.1; u.volume=1;
-    speechSynthesis.speak(u);
-  }catch(e){console.log(e);}
-}
+function speakText(text){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.voice=voices.find(v=>v.lang.startsWith("en")&&v.name.toLowerCase().includes("female"))||voices[0];u.rate=0.85;u.pitch=1.1;u.volume=1;speechSynthesis.speak(u);}catch(e){console.log(e);}}
+function speakQuote(){if(slides[index]) speakText(slides[index].innerText);}
 
-function speakQuote(){
-  if(slides[index]) speakText(slides[index].innerText);
-}
+document.body.addEventListener("click",()=>{speakQuote();},{once:true});
 
-document.body.addEventListener("click",()=>{
-  speakQuote();
-},{once:true});
+window.enter=enter;
+
+});
 </script>
-
 </body>
 </html>

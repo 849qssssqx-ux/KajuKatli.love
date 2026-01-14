@@ -183,14 +183,20 @@ text-align:center;
 padding:120px 20px;
 animation:fadeIn 2s ease
 }
+@media(max-width:768px){
+h1{font-size:2rem}
+h2{font-size:1.6rem}
+.text-slide{font-size:1.2rem}
+.card{padding:25px}
+}
 </style>
 </head>
 
 <body>
 
 <!-- BACKGROUND MUSIC -->
-<audio id="bgm" loop>
-<source src="https://cdn.pixabay.com/audio/2023/02/14/audio_2c1c5e6e52.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_7c7d0d7b3f.mp3" type="audio/mpeg">
 </audio>
 
 <!-- ENTRY -->
@@ -212,6 +218,7 @@ animation:fadeIn 2s ease
 </div>
 </div>
 
+<!-- LOVE LETTER -->
 <div class="card">
 <h2>My Love Letter 💌</h2>
 
@@ -226,11 +233,15 @@ animation:fadeIn 2s ease
 <p>No matter the distance no matter the time my heart remains yours I want a future where your happiness is my priority and your smile is my reward If the world ever shakes I want to hold you through it If everything ends I want my last moment to be with you I love you deeply endlessly and with the intention of forever</p>
 
 <p><strong>Always yours</strong><br>Ahmer</p>
-  <p>
+
+<!-- NEW LONG PARAGRAPH -->
+<p>
 There is something about you that feels steady in a world that keeps moving too fast When I think about us I do not feel noise or chaos I feel clarity I feel like I can breathe without explaining myself You see me in ways that make me want to be honest with who I am and who I am becoming I do not feel the need to impress or perform around you I just exist and that feels rare and precious Being with you makes me want to live better not louder deeper not faster and if I imagine my future it is not filled with grand scenes it is filled with you beside me in ordinary moments that quietly mean everything
 </p>
+
 </div>
 
+<!-- PROPOSAL -->
 <div class="proposal">
 <h2>Kashaf, will you be mine forever? 💍</h2>
 <button onclick="yes()">YES 💗</button>
@@ -251,7 +262,7 @@ const countEl=document.getElementById("count");
 const banner=document.getElementById("banner");
 const entry=document.getElementById("entry");
 const main=document.querySelector(".container");
-const bgm=document.getElementById("bgm");
+const bgm=document.getElementById("bgMusic");
 
 const timer=setInterval(()=>{
 count--;
@@ -260,11 +271,12 @@ countEl.textContent=count;
 }else{
 countEl.style.display="none";
 banner.style.display="block";
-bgm.play();
 fireworks();
 setTimeout(()=>{
 entry.style.display="none";
 main.style.display="block";
+bgm.volume=0.4;
+bgm.play();
 },3000);
 clearInterval(timer);
 }
@@ -305,17 +317,6 @@ document.querySelector(".proposal").style.display="none";
 document.getElementById("final").style.display="block";
 fireworks();
 }
-</script>
-  <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_7c7d0d7b3f.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-document.addEventListener("click", function () {
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.4;
-  music.play();
-}, { once: true });
 </script>
 
 </body>

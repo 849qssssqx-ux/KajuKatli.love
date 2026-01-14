@@ -195,17 +195,31 @@ h2{font-size:1.6rem}
 <body>
 
 <!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop>
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop preload="auto">
   <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_7c7d0d7b3f.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
 </audio>
 
-<!-- ENTRY -->
-<div id="entry">
-<div id="count">3</div>
-<div id="banner">Happy First Anniversary Kashaf ❤️</div>
-</div>
+<script>
+const bgm = document.getElementById("bgMusic");
 
-<div class="container">
+// Function to start music safely after countdown
+function playMusic(){
+  bgm.volume = 0.4;
+  const playPromise = bgm.play();
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Audio is playing
+    }).catch(error => {
+      // Autoplay blocked, require user click
+      document.addEventListener("click", function(){
+        bgm.play();
+      }, {once:true});
+    });
+  }
+}
+</script>
 
 <h1>Kashaf & Ahmer — Forever</h1>
 
@@ -257,30 +271,31 @@ There is something about you that feels steady in a world that keeps moving too 
 
 <script>
 /* COUNTDOWN + MUSIC + FIREWORKS */
-let count=3;
-const countEl=document.getElementById("count");
-const banner=document.getElementById("banner");
-const entry=document.getElementById("entry");
-const main=document.querySelector(".container");
-const bgm=document.getElementById("bgMusic");
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_7c7d0d7b3f.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-const timer=setInterval(()=>{
-count--;
-if(count>0){
-countEl.textContent=count;
-}else{
-countEl.style.display="none";
-banner.style.display="block";
-fireworks();
-setTimeout(()=>{
-entry.style.display="none";
-main.style.display="block";
-bgm.volume=0.4;
-bgm.play();
-},3000);
-clearInterval(timer);
+<script>
+const bgm = document.getElementById("bgMusic");
+
+// Function to start music safely after countdown
+function playMusic(){
+  bgm.volume = 0.4;
+  const playPromise = bgm.play();
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Audio is playing
+    }).catch(error => {
+      // Autoplay blocked, require user click
+      document.addEventListener("click", function(){
+        bgm.play();
+      }, {once:true});
+    });
+  }
 }
-},1200);
+</script>
 
 /* FIREWORK FUNCTION */
 function fireworks(){

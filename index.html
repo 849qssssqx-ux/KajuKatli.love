@@ -2,146 +2,307 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Kashaf Magical Love</title>
+<title>Kashaf & Ahmer — First Anniversary</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Montserrat,sans-serif;background:linear-gradient(180deg,#ffd6ff,#e7c6ff,#c77dff,#9d4edd);color:white;overflow-x:hidden;overflow-y:auto;}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 40%),radial-gradient(circle at 80% 80%,rgba(255,255,255,.2),transparent 40%);pointer-events:none;animation:glow 12s ease-in-out infinite;}
-@keyframes glow{0%,100%{opacity:.6}50%{opacity:1}}
+*{margin:0;padding:0;box-sizing:border-box}
 
-#gate{position:fixed;inset:0;background:linear-gradient(135deg,#ffb3ec,#c77dff);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;overflow:hidden;}
-#gate h1{font-family:Playfair Display,serif;font-size:60px;opacity:0;animation:fadeIn 2s forwards;}
-#gate button{margin-top:40px;padding:26px 60px;font-size:22px;border:none;border-radius:60px;background:white;color:#9d4edd;cursor:pointer;box-shadow:0 30px 60px rgba(0,0,0,.35);transform:scale(0);animation:buttonPop 2s forwards 1s;}
-@keyframes fadeIn{0%{opacity:0;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
-@keyframes buttonPop{0%{transform:scale(0)}100%{transform:scale(1)}}
+body{
+font-family:'Inter',sans-serif;
+background:radial-gradient(circle at top,#3a0000,#0a0000 75%);
+color:#ffeccc;
+overflow-x:hidden;
+min-height:100vh
+}
 
-header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px;}
-header h1{font-family:Playfair Display,serif;font-size:72px;}
-header p{font-size:26px;max-width:900px;margin-top:30px;}
+/* ENTRY */
+#entry{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#7a0000,#2a0000);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:9999;
+text-align:center
+}
 
-section{padding:120px 10%;display:flex;align-items:center;gap:80px;}
-section:nth-child(even){flex-direction:row-reverse;}
-section img{width:380px;border-radius:30px;box-shadow:0 40px 80px rgba(0,0,0,.4);animation:float 6s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-.text{max-width:700px;}
-.text h2{font-family:Playfair Display,serif;font-size:48px;margin-bottom:30px;}
-.text p{font-size:22px;line-height:1.7;}
+#count{
+font-family:'Playfair Display',serif;
+font-size:6rem;
+color:gold;
+text-shadow:0 0 40px rgba(255,215,0,.8);
+animation:pulse 1s infinite
+}
 
-.slider{display:flex;height:100vh;width:100vw;transition:transform 2s cubic-bezier(.77,0,.18,1);}
-.slide{min-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px;}
-.slide h1{font-family:Playfair Display,serif;font-size:68px;max-width:900px;opacity:0;animation:rise 3s ease forwards;}
-@keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
 
-.fairy{position:fixed;pointer-events:none;font-size:24px;opacity:1;animation-name:riseParticles;animation-timing-function:linear;animation-iteration-count:infinite;}
-@keyframes riseParticles{0%{transform:translateY(100vh) rotate(0deg);opacity:1;}100%{transform:translateY(-50vh) rotate(360deg);opacity:0;}}
+#banner{
+display:none;
+margin-top:30px;
+font-family:'Playfair Display',serif;
+font-size:3rem;
+color:gold;
+text-shadow:0 0 50px rgba(255,215,0,.9);
+animation:fadeIn 2s ease
+}
 
-.trail{position:fixed;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.8);pointer-events:none;animation:fade 1s linear forwards;}
-@keyframes fade{to{opacity:0;transform:scale(2);}}
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:none}
+}
 
-#midnight{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;text-align:center;}
-#midnight h3{font-family:Playfair Display,serif;font-size:54px;max-width:900px;}
+/* MAIN */
+.container{max-width:900px;margin:auto;padding:20px;display:none}
 
-@media(max-width:900px){section{flex-direction:column!important;text-align:center}section img{width:90%}}
+h1,h2{
+font-family:'Playfair Display',serif;
+text-align:center;
+color:gold;
+text-shadow:0 0 20px rgba(255,215,0,.4)
+}
+
+h1{margin:60px 0 40px;font-size:2.8rem}
+h2{margin:80px 0 30px;font-size:2.1rem}
+
+.card{
+background:linear-gradient(135deg,rgba(120,0,0,.93),rgba(40,0,0,.93));
+border-radius:22px;
+padding:40px;
+margin-bottom:70px;
+border:1px solid rgba(255,215,0,.35);
+box-shadow:0 0 40px rgba(255,0,0,.35)
+}
+
+p{
+font-size:1.1rem;
+margin-bottom:20px;
+color:#ffeccc;
+text-align:justify
+}
+
+/* SLIDER */
+.text-slider{
+height:260px;
+border-radius:22px;
+overflow:hidden;
+margin-bottom:70px;
+background:linear-gradient(45deg,#b30000,#ffcc66);
+display:flex;
+align-items:center
+}
+
+.text-slides{
+display:flex;
+width:400%;
+animation:slide 22s infinite linear
+}
+
+.text-slide{
+width:25%;
+padding:30px;
+font-size:1.6rem;
+font-weight:500;
+text-align:center;
+color:#3b0000
+}
+
+@keyframes slide{
+0%{transform:translateX(0)}
+25%{transform:translateX(-25%)}
+50%{transform:translateX(-50%)}
+75%{transform:translateX(-75%)}
+100%{transform:translateX(0)}
+}
+
+/* FLOATING */
+.floating{
+position:fixed;
+font-size:1.6rem;
+opacity:.9;
+pointer-events:none;
+animation:floatUp 18s linear infinite;
+z-index:1;
+color:gold;
+text-shadow:0 0 12px rgba(255,215,0,.6)
+}
+
+@keyframes floatUp{
+from{transform:translateY(110vh) rotate(0)}
+to{transform:translateY(-10vh) rotate(360deg)}
+}
+
+/* FIREWORKS */
+.firework{
+position:fixed;
+width:6px;
+height:6px;
+background:gold;
+border-radius:50%;
+animation:explode 1.5s ease-out forwards;
+pointer-events:none
+}
+
+@keyframes explode{
+to{
+transform:translate(var(--x),var(--y)) scale(0);
+opacity:0
+}
+}
+
+/* PROPOSAL */
+.proposal{text-align:center;margin:90px 0}
+
+.proposal button{
+padding:16px 34px;
+font-size:1.2rem;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:linear-gradient(45deg,#b30000,#ffcc66);
+color:#3b0000;
+font-weight:600;
+margin:12px;
+box-shadow:0 0 15px rgba(255,215,0,.5)
+}
+
+#no{position:absolute}
+
+/* FINAL */
+#final{
+display:none;
+text-align:center;
+padding:120px 20px;
+animation:fadeIn 2s ease
+}
 </style>
 </head>
+
 <body>
 
-<div id="gate">
-<h1>Welcome to Kashaf's Magical World</h1>
-<button onclick="enter()">Enter the Magical World</button>
+<!-- BACKGROUND MUSIC -->
+<audio id="bgm" loop>
+<source src="https://cdn.pixabay.com/audio/2023/02/14/audio_2c1c5e6e52.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ENTRY -->
+<div id="entry">
+<div id="count">3</div>
+<div id="banner">Happy First Anniversary Kashaf ❤️</div>
 </div>
 
-<header>
-<h1>Kashaf</h1>
-<p>This space exists only for you a place where love never questions never rushes and never leaves</p>
-</header>
+<div class="container">
 
-<section>
-<img src="E7D85D3C-9C81-4AE9-B7F1-5B603B3569BE.jpeg" />
-<div class="text"><h2>You are safe</h2><p>Kashaf you never have to be strong here you never have to explain your heart you never have to wonder if you are enough because in my world you already are completely deeply endlessly</p></div>
-</section>
+<h1>Kashaf & Ahmer — Forever</h1>
 
-<section>
-<img src="3CFD6F06-7836-4A11-A5DE-7CE21751AA26.jpeg" />
-<div class="text"><h2>You are chosen</h2><p>I choose you in quiet moments I choose you in chaos I choose you when words fail and when the world feels heavy there is no hesitation no replacement only you Kashaf</p></div>
-</section>
-
-<section>
-<img src="40AEA9C6-4EB8-429C-BFE2-18AE039A1FA0.jpeg" />
-<div class="text"><h2>You are loved</h2><p>This love does not demand it protects it does not rush it waits it does not fade it stays softly firmly faithfully with you Kashaf always</p></div>
-</section>
-
-<div class="slider" id="slider">
-<div class="slide"><h1>Kashaf you are always safe with me</h1></div>
-<div class="slide"><h1>You are deeply loved and cherished Kashaf</h1></div>
-<div class="slide"><h1>I choose you in every lifetime Kashaf</h1></div>
-<div class="slide"><h1>You never have to worry or doubt Kashaf</h1></div>
-<div class="slide"><h1>This love is gentle warm and eternal Kashaf</h1></div>
-<div class="slide"><h1>I am right here forever Kashaf</h1></div>
+<div class="text-slider">
+<div class="text-slides">
+<div class="text-slide">Tu hi meri shab hai Tu hi meri subah 🌙</div>
+<div class="text-slide">Mohabbat bhi tu Ibaadat bhi tu ✨</div>
+<div class="text-slide">You are my peace Kashaf 🌷</div>
+<div class="text-slide">Forever starts with you ❤️</div>
+</div>
 </div>
 
-<div id="midnight">
-<h3>It is midnight and I am thinking of you Kashaf</h3>
+<div class="card">
+<h2>My Love Letter 💌</h2>
+
+<p>Kashhuuuuuuu my love</p>
+
+<p>One year with you feels unreal in the most beautiful way Being with you has changed how my heart understands love You did not just enter my life you slowly became the place where my heart feels safe When I think of you everything softens inside me The noise fades the rush stops and all that remains is you standing there effortlessly becoming my peace You are not a part of my life you are the feeling that holds it together</p>
+
+<p>Loving you feels natural like breathing like waking up and knowing the sun will rise I do not force it I do not question it It just exists strong and constant You make ordinary moments feel meaningful and silence feel comforting Even on days when words fail me my heart still knows how to reach you You are the one my soul recognizes without explanation and chooses without hesitation every single time</p>
+
+<p>This year taught me that love is not just about passion it is about choosing staying and growing together I choose you in calm days and in chaos I choose you when things are easy and when they are not I want to stand beside you through every version of life changing learning becoming better together You are not a chapter you are the story I want to keep writing</p>
+
+<p>No matter the distance no matter the time my heart remains yours I want a future where your happiness is my priority and your smile is my reward If the world ever shakes I want to hold you through it If everything ends I want my last moment to be with you I love you deeply endlessly and with the intention of forever</p>
+
+<p><strong>Always yours</strong><br>Ahmer</p>
 </div>
 
-<!-- Background Music -->
-<audio id="bgMusic" src="bgmusic.mp3" loop></audio>
+<div class="proposal">
+<h2>Kashaf, will you be mine forever? 💍</h2>
+<button onclick="yes()">YES 💗</button>
+<button id="no" onmouseover="run()">NO 😏</button>
+</div>
+
+<div id="final">
+<h1>Forever Begins 🌷</h1>
+<p>— Ahmer</p>
+</div>
+
+</div>
 
 <script>
-document.addEventListener("DOMContentLoaded",()=>{
+/* COUNTDOWN + MUSIC + FIREWORKS */
+let count=3;
+const countEl=document.getElementById("count");
+const banner=document.getElementById("banner");
+const entry=document.getElementById("entry");
+const main=document.querySelector(".container");
+const bgm=document.getElementById("bgm");
 
-function enter(){
-  document.getElementById("gate").style.display="none";
-  const music=document.getElementById("bgMusic");
-  if(music){music.play().catch(()=>{});}
+const timer=setInterval(()=>{
+count--;
+if(count>0){
+countEl.textContent=count;
+}else{
+countEl.style.display="none";
+banner.style.display="block";
+bgm.play();
+fireworks();
+setTimeout(()=>{
+entry.style.display="none";
+main.style.display="block";
+},3000);
+clearInterval(timer);
+}
+},1200);
+
+/* FIREWORK FUNCTION */
+function fireworks(){
+for(let i=0;i<80;i++){
+const f=document.createElement("div");
+f.className="firework";
+f.style.left="50vw";
+f.style.top="50vh";
+f.style.setProperty("--x",(Math.random()*400-200)+"px");
+f.style.setProperty("--y",(Math.random()*400-200)+"px");
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1500);
+}
 }
 
-// Slider
-let index=0;
-const slider=document.getElementById("slider");
-const slides=slider.getElementsByClassName("slide");
+/* FLOATING */
 setInterval(()=>{
-  index=(index+1)%slides.length;
-  slider.style.transform=`translateX(-${index*100}vw)`;
-},6000);
+let f=document.createElement("div");
+f.className="floating";
+f.textContent=["Kashaf 🌷","Ahmer ❤️","Forever ♾️","Mohabbat ✨","🌹","🥰","💍","🌙"][Math.floor(Math.random()*8)];
+f.style.left=Math.random()*90+"vw";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),20000);
+},700);
 
-// Floating Emojis
-const fairyIcons=["✨","💖","🌸","💫","🧚"];
-function createFairy(){
-  const f=document.createElement("div");
-  f.className="fairy";
-  f.textContent=fairyIcons[Math.floor(Math.random()*fairyIcons.length)];
-  f.style.left=Math.random()*100+"vw";
-  f.style.fontSize=(18+Math.random()*30)+"px";
-  f.style.animationDuration=(8+Math.random()*8)+"s";
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),(8+Math.random()*8)*1000);
+function run(){
+const n=document.getElementById("no");
+n.style.left=Math.random()*70+"vw";
+n.style.top=Math.random()*70+"vh";
 }
-for(let i=0;i<50;i++){setTimeout(createFairy,i*200)}
-setInterval(createFairy,800);
 
-// Cursor trail
-document.addEventListener("mousemove",e=>{
-  const t=document.createElement("div");
-  t.className="trail";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),1000);
-});
-
-// Midnight message
-setInterval(()=>{
-  const d=new Date();
-  if(d.getHours()===0 && d.getMinutes()===0){
-    document.getElementById("midnight").style.display="flex";
-  }
-},1000);
-
-window.enter=enter;
-});
+function yes(){
+document.querySelector(".proposal").style.display="none";
+document.getElementById("final").style.display="block";
+fireworks();
+}
 </script>
+
 </body>
 </html>

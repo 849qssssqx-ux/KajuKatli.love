@@ -4,222 +4,66 @@
 <meta charset="UTF-8">
 <title>Kashaf & Ahmer — First Anniversary</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:'Inter',sans-serif;
-background:radial-gradient(circle at top,#3a0000,#0a0000 75%);
-color:#ffeccc;
-overflow-x:hidden;
-min-height:100vh
-}
+body{font-family:'Inter',sans-serif;background:radial-gradient(circle at top,#3a0000,#0a0000 75%);color:#ffeccc;overflow-x:hidden;min-height:100vh}
 
 /* ENTRY */
-#entry{
-position:fixed;
-inset:0;
-background:linear-gradient(135deg,#7a0000,#2a0000);
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-z-index:9999;
-text-align:center
-}
-
-#count{
-font-family:'Playfair Display',serif;
-font-size:6rem;
-color:gold;
-text-shadow:0 0 40px rgba(255,215,0,.8);
-animation:pulse 1s infinite
-}
-
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
-}
-
-#banner{
-display:none;
-margin-top:30px;
-font-family:'Playfair Display',serif;
-font-size:3rem;
-color:gold;
-text-shadow:0 0 50px rgba(255,215,0,.9);
-animation:fadeIn 2s ease
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(30px)}
-to{opacity:1;transform:none}
-}
+#entry{position:fixed;inset:0;background:linear-gradient(135deg,#7a0000,#2a0000);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;text-align:center}
+#count{font-family:'Playfair Display',serif;font-size:6rem;color:gold;text-shadow:0 0 40px rgba(255,215,0,.8);animation:pulse 1s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+#banner{display:none;margin-top:30px;font-family:'Playfair Display',serif;font-size:3rem;color:gold;text-shadow:0 0 50px rgba(255,215,0,.9);animation:fadeIn 2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 
 /* MAIN */
 .container{max-width:900px;margin:auto;padding:20px;display:none}
-
-h1,h2{
-font-family:'Playfair Display',serif;
-text-align:center;
-color:gold;
-text-shadow:0 0 20px rgba(255,215,0,.4)
-}
-
+h1,h2{font-family:'Playfair Display',serif;text-align:center;color:gold;text-shadow:0 0 20px rgba(255,215,0,.4)}
 h1{margin:60px 0 40px;font-size:2.8rem}
 h2{margin:80px 0 30px;font-size:2.1rem}
-
-.card{
-background:linear-gradient(135deg,rgba(120,0,0,.93),rgba(40,0,0,.93));
-border-radius:22px;
-padding:40px;
-margin-bottom:70px;
-border:1px solid rgba(255,215,0,.35);
-box-shadow:0 0 40px rgba(255,0,0,.35)
-}
-
-p{
-font-size:1.1rem;
-margin-bottom:20px;
-color:#ffeccc;
-text-align:justify
-}
+.card{background:linear-gradient(135deg,rgba(120,0,0,.93),rgba(40,0,0,.93));border-radius:22px;padding:40px;margin-bottom:70px;border:1px solid rgba(255,215,0,.35);box-shadow:0 0 40px rgba(255,0,0,.35)}
+p{font-size:1.1rem;margin-bottom:20px;color:#ffeccc;text-align:justify}
 
 /* SLIDER */
-.text-slider{
-height:260px;
-border-radius:22px;
-overflow:hidden;
-margin-bottom:70px;
-background:linear-gradient(45deg,#b30000,#ffcc66);
-display:flex;
-align-items:center
-}
-
-.text-slides{
-display:flex;
-width:400%;
-animation:slide 22s infinite linear
-}
-
-.text-slide{
-width:25%;
-padding:30px;
-font-size:1.6rem;
-font-weight:500;
-text-align:center;
-color:#3b0000
-}
-
-@keyframes slide{
-0%{transform:translateX(0)}
-25%{transform:translateX(-25%)}
-50%{transform:translateX(-50%)}
-75%{transform:translateX(-75%)}
-100%{transform:translateX(0)}
-}
+.text-slider{height:260px;border-radius:22px;overflow:hidden;margin-bottom:70px;background:linear-gradient(45deg,#b30000,#ffcc66);display:flex;align-items:center}
+.text-slides{display:flex;width:400%;animation:slide 22s infinite linear}
+.text-slide{width:25%;padding:30px;font-size:1.6rem;font-weight:500;text-align:center;color:#3b0000}
+@keyframes slide{0%{transform:translateX(0)}25%{transform:translateX(-25%)}50%{transform:translateX(-50%)}75%{transform:translateX(-75%)}100%{transform:translateX(0)}}
 
 /* FLOATING */
-.floating{
-position:fixed;
-font-size:1.6rem;
-opacity:.9;
-pointer-events:none;
-animation:floatUp 18s linear infinite;
-z-index:1;
-color:gold;
-text-shadow:0 0 12px rgba(255,215,0,.6)
-}
-
-@keyframes floatUp{
-from{transform:translateY(110vh) rotate(0)}
-to{transform:translateY(-10vh) rotate(360deg)}
-}
+.floating{position:fixed;font-size:1.6rem;opacity:.9;pointer-events:none;animation:floatUp 18s linear infinite;z-index:1;color:gold;text-shadow:0 0 12px rgba(255,215,0,.6)}
+@keyframes floatUp{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-10vh) rotate(360deg)}}
 
 /* FIREWORKS */
-.firework{
-position:fixed;
-width:6px;
-height:6px;
-background:gold;
-border-radius:50%;
-animation:explode 1.5s ease-out forwards;
-pointer-events:none
-}
-
-@keyframes explode{
-to{
-transform:translate(var(--x),var(--y)) scale(0);
-opacity:0
-}
-}
+.firework{position:fixed;width:6px;height:6px;background:gold;border-radius:50%;animation:explode 1.5s ease-out forwards;pointer-events:none}
+@keyframes explode{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
 
 /* PROPOSAL */
 .proposal{text-align:center;margin:90px 0}
-
-.proposal button{
-padding:16px 34px;
-font-size:1.2rem;
-border:none;
-border-radius:30px;
-cursor:pointer;
-background:linear-gradient(45deg,#b30000,#ffcc66);
-color:#3b0000;
-font-weight:600;
-margin:12px;
-box-shadow:0 0 15px rgba(255,215,0,.5)
-}
-
+.proposal button{padding:16px 34px;font-size:1.2rem;border:none;border-radius:30px;cursor:pointer;background:linear-gradient(45deg,#b30000,#ffcc66);color:#3b0000;font-weight:600;margin:12px;box-shadow:0 0 15px rgba(255,215,0,.5)}
 #no{position:absolute}
 
 /* FINAL */
-#final{
-display:none;
-text-align:center;
-padding:120px 20px;
-animation:fadeIn 2s ease
-}
-@media(max-width:768px){
-h1{font-size:2rem}
-h2{font-size:1.6rem}
-.text-slide{font-size:1.2rem}
-.card{padding:25px}
-}
+#final{display:none;text-align:center;padding:120px 20px;animation:fadeIn 2s ease}
+@media(max-width:768px){h1{font-size:2rem}h2{font-size:1.6rem}.text-slide{font-size:1.2rem}.card{padding:25px}}
 </style>
 </head>
 
 <body>
 
 <!-- BACKGROUND MUSIC -->
-<!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" loop preload="auto">
   <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_7c7d0d7b3f.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 
-<script>
-const bgm = document.getElementById("bgMusic");
+<!-- ENTRY -->
+<div id="entry">
+<div id="count">3</div>
+<div id="banner">Happy First Anniversary Kashaf ❤️</div>
+</div>
 
-// Function to start music safely after countdown
-function playMusic(){
-  bgm.volume = 0.4;
-  const playPromise = bgm.play();
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Audio is playing
-    }).catch(error => {
-      // Autoplay blocked, require user click
-      document.addEventListener("click", function(){
-        bgm.play();
-      }, {once:true});
-    });
-  }
-}
-</script>
+<div class="container">
 
 <h1>Kashaf & Ahmer — Forever</h1>
 
@@ -271,66 +115,76 @@ There is something about you that feels steady in a world that keeps moving too 
 
 <script>
 /* COUNTDOWN + MUSIC + FIREWORKS */
-<!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_7c7d0d7b3f.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<script>
+let count = 3;
+const countEl = document.getElementById("count");
+const banner = document.getElementById("banner");
+const entry = document.getElementById("entry");
+const main = document.querySelector(".container");
 const bgm = document.getElementById("bgMusic");
 
-// Function to start music safely after countdown
+const timer = setInterval(()=>{
+  count--;
+  if(count>0){
+    countEl.textContent = count;
+  } else {
+    countEl.style.display = "none";
+    banner.style.display = "block";
+    fireworks();
+    playMusic(); // START MUSIC
+    setTimeout(()=>{
+      entry.style.display = "none";
+      main.style.display = "block";
+    },3000);
+    clearInterval(timer);
+  }
+},1200);
+
+// PLAY MUSIC FUNCTION (FIXED AUTOPLAY)
 function playMusic(){
   bgm.volume = 0.4;
   const playPromise = bgm.play();
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Audio is playing
-    }).catch(error => {
-      // Autoplay blocked, require user click
-      document.addEventListener("click", function(){
-        bgm.play();
-      }, {once:true});
+  if(playPromise !== undefined){
+    playPromise.then(_=>{}).catch(err=>{
+      document.addEventListener("click", function(){ bgm.play() }, {once:true});
     });
   }
 }
-</script>
 
 /* FIREWORK FUNCTION */
 function fireworks(){
-for(let i=0;i<80;i++){
-const f=document.createElement("div");
-f.className="firework";
-f.style.left="50vw";
-f.style.top="50vh";
-f.style.setProperty("--x",(Math.random()*400-200)+"px");
-f.style.setProperty("--y",(Math.random()*400-200)+"px");
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1500);
-}
+  for(let i=0;i<80;i++){
+    const f=document.createElement("div");
+    f.className="firework";
+    f.style.left="50vw";
+    f.style.top="50vh";
+    f.style.setProperty("--x",(Math.random()*400-200)+"px");
+    f.style.setProperty("--y",(Math.random()*400-200)+"px");
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1500);
+  }
 }
 
 /* FLOATING */
 setInterval(()=>{
-let f=document.createElement("div");
-f.className="floating";
-f.textContent=["Kashaf 🌷","Ahmer ❤️","Forever ♾️","Mohabbat ✨","🌹","🥰","💍","🌙"][Math.floor(Math.random()*8)];
-f.style.left=Math.random()*90+"vw";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),20000);
+  let f=document.createElement("div");
+  f.className="floating";
+  f.textContent=["Kashaf 🌷","Ahmer ❤️","Forever ♾️","Mohabbat ✨","🌹","🥰","💍","🌙","💫","✨"][Math.floor(Math.random()*10)];
+  f.style.left=Math.random()*90+"vw";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),20000);
 },700);
 
+/* PROPOSAL BUTTONS */
 function run(){
-const n=document.getElementById("no");
-n.style.left=Math.random()*70+"vw";
-n.style.top=Math.random()*70+"vh";
+  const n=document.getElementById("no");
+  n.style.left=Math.random()*70+"vw";
+  n.style.top=Math.random()*70+"vh";
 }
 
 function yes(){
-document.querySelector(".proposal").style.display="none";
-document.getElementById("final").style.display="block";
-fireworks();
+  document.querySelector(".proposal").style.display="none";
+  document.getElementById("final").style.display="block";
+  fireworks();
 }
 </script>
 
